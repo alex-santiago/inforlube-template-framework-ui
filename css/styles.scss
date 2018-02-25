@@ -1,0 +1,80 @@
+/*--------------------------------------------------------------
+# BOOTSTRAP STYLES OVERRIDES
+--------------------------------------------------------------*/
+ /* MAIN COLOURS */
+/*
+$inforlub-yellow: #ffd92b;
+$inforlub-light-grey: #ededed;
+$inforlub-dark-grey: #444444;
+$inforlub-dark-background: #202020;
+$inforlub-white: #fff;
+*/
+/*--------------------------------------------------------------
+# Import Colors Overrides
+--------------------------------------------------------------*/
+@import "colors";
+/*
+.btn-primary {
+  color: #ffd92b;
+  background-color: #202020;
+  border-color: #202020;
+}
+.btn-primary:hover {
+  color: #ffd92b;
+  background-color: #444;
+  border-color: #555;
+}
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #ffd92b;
+  background-color: #202020;
+  border-color: #202020;
+}
+ */
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,300i,400,400i,500,700');
+ body {
+   font-family: 'Fira Sans Extra Condensed', Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+   font-size: 1rem;
+   line-height: 1.5;
+ }
+
+.main-content-body {
+  padding: 0;
+  margin: 0;
+}
+
+#image-logo {
+  max-width: 150px;
+}
+
+.image-logo--off {
+  display: none;
+}
+
+.form-group label {
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+body.sidenav-toggled site-navigation .fa {
+  color: $yellow;
+}
+/*--------------------------------------------------------------
+# SWITCH CONTROL STYLE SHEET
+--------------------------------------------------------------*/
+@import "switch";
+
+/*--------------------------------------------------------------
+# TAGs STYLE SHEETS
+--------------------------------------------------------------*/
+@import "../tags/wire-frame/wrapper.css";
+@import "../tags/wire-frame/site-header.css";
+@import "../tags/wire-frame/toggle-site-navigation.css";
+@import "../tags/wire-frame/site-messages.css";
+@import "../tags/wire-frame/site-alerts.css";
+@import "../tags/wire-frame/site-search.css";
+@import "../tags/wire-frame/site-logout-button.css";
+@import "../tags/wire-frame/main-content.css";
+@import "../tags/wire-frame/bread-crumb.css";
+@import "../tags/wire-frame/content-body.css";
+@import "../tags/wire-frame/site-footer.css";
+@import "../tags/wire-frame/site-navigation.css";

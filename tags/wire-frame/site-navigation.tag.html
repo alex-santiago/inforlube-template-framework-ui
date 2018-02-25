@@ -1,0 +1,68 @@
+<site-navigation>
+  <ul class="navbar-nav navbar-sidenav" id="mainMenu">
+    <img id="image-logo" src="images/logo.Inforlube.white.png" alt="Inforlube Logo">
+    <!-- <a class="nav-link" href="#" onclick={clickLogo}>
+
+    </a> -->
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="{ item.description }" each="{ item in menuparent }" onclick={clickItem}>
+      <a class="nav-link" href="#" if={!(item.children.length > 0)}>
+        <i class="fa fa-fw { item.ico }"></i>
+        <span class="nav-link-text">{ item.description }</span>
+      </a>
+      <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#{ item.id }" data-parent="#mainMenu" if={(item.children.length > 0)}>
+        <i class="fa fa-fw { item.ico }"></i>
+        <span class="nav-link-text">{ item.description }</span>
+      </a>
+      <ul class="sidenav-second-level collapse" id="{ item.id }" if={(item.children.length > 0)} >
+        <li each="{ child in item.children }" onclick={clickItem}>
+          <a class="nav-link" href="#">
+            <i class="fa fa-fw { child.ico }"></i>
+            <span class="nav-link-text">{ child.description }</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <!-- component javascript code -->
+  <script>
+
+    const tag = this;
+
+    this.on('mount', function() {
+      tag.menuparent = JSON.parse(menuItens);
+      tag.update();
+    });
+
+    this.on('before-mount', function() {
+    });
+
+    clickItem ( e ) {
+      if ( (e.item.child == null) || (e.item.child == undefined) ) {
+        // console.log('PARENT clicked!');
+        // console.log(e.item.item);
+        // console.log(e.item.item.id);
+        // console.log(e.item.item.route);
+        e.preventDefault();
+        if (e.item.item.route != "#") {
+          path.navigate(e.item.item.route, e.item.item.description, "");
+          e.stopPropagation();
+        }
+        else {
+          if ($("body").hasClass("sidenav-toggled"))
+            toggleSiteNavigation ();
+        }
+      }
+      else {
+        // console.log('CHILD clicked!');
+        // console.log(e.item);
+        // console.log(e.item.child.description);
+        // console.log(e.item.child.route);
+        e.preventDefault();
+        path.navigate(e.item.child.route, e.item.child.parent, e.item.child.description);
+        e.stopPropagation();
+      }
+    }
+
+  </script>
+</site-navigation>

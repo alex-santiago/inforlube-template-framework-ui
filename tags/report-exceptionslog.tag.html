@@ -1,0 +1,257 @@
+<report-exceptionslog>
+  <div class="card mb-3">
+    <div class="card-header"><i class="fa fa-bug"></i> Report ExceptionsLog</div>
+    <div class="card-body">
+      <form id="search-form" role="form">
+        <div class="row mb-3">
+          <div class="col-sm-12 col-md-12 col-lg-4">
+            <div class="form-group">
+              <label>Api</label>
+              <input class="form-control" placeholder="Api name" type="text" ref="inputApi">
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-6 col-lg-4">
+            <div class="form-group">
+              <label>Data de Início</label>
+              <input class="form-control" placeholder="Start date to search" type="datetime-local" ref="inputStartDate">
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-6 col-lg-4">
+            <div class="form-group">
+              <label>Data de Fim</label>
+              <input class="form-control" placeholder="End date to search" type="datetime-local"  ref="inputEndDate">
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="form-group">
+              <button class="btn btn-primary" onclick={onButtonSearchClick}><i class="fa fa-search"></i> Search</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="col-lg-12">
+        <table class="dataTable table table-bordered table-striped" id="reporttable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Date</th>
+              <th>Api</th>
+              <th>Class Name</th>
+              <td>Message</td>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th>Date</th>
+              <th>Api</th>
+              <th>Class Name</th>
+              <td>Message</td>
+            </tr>
+          </tfoot>
+          <tbody>
+            <tr each={item in this.items} onclick={ onExpandClick }>
+              <td></td>
+              <td>{ item.Date }</td>
+              <td>{ item.Api }</td>
+              <td>{ ( item.Exception == null ? "" : item.Exception.ClassName ) }</td>
+              <td>{ ( item.Exception == null ? "" : item.Exception.Message ) }</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- component javascript code -->
+  <script>
+
+    const tag = this;
+
+    tag.tableUpdated = false;
+
+    this.on('mount', function() {
+      var tomorrow = new Date(new Date().setDate(new Date().getDate()+1));
+      tag.refs.inputStartDate.value = '2018-02-11T00:00:00'; //new Date().toISOString().slice(0, 10)+'T00:00:00';
+      tag.refs.inputEndDate.value = tomorrow.toISOString().slice(0, 10)+'T00:00:00';
+      tag.refs.inputApi.value = 'Inforlube';
+    });
+
+    this.on('before-mount', function() {
+    });
+
+    // Evento Search button
+    onButtonSearchClick(e){
+        if(tag.dataTable)
+            tag.dataTable.destroy();
+
+        var parameters = {};
+        parameters.api = tag.refs.inputApi.value;
+        parameters.startDate = tag.refs.inputStartDate.value;
+        parameters.endDate = tag.refs.inputEndDate.value;
+
+        // console.log(parameters);
+
+        inforlub.controllers.exceptionslog.getlogs(parameters, function(json){
+            tag.items = json;
+            console.log(json);
+            tag.update();
+            // Criar estrutura da tabela
+            tag.dataTable = $("#reporttable").DataTable( {
+                "data": + json,
+                "columns": [
+                    {
+                        "className":      'details-control',
+                        "orderable":      false,
+                        "data":           null,
+                        "defaultContent": '',
+                        "render": function () {
+                          return '<i class="fa fa-plus-square" aria-hidden="true"></i>';
+                        },
+                        width: "15px"
+                    },
+                    { "data": "Date" },
+                    { "data": "Api" },
+                    { "data": "ClassName" },
+                    { "data": "Message" }
+                ],
+                "order": [[1, 'asc']]
+            } );
+        });
+    }
+
+    // Evento para expandir linha da tabela
+    onExpandClick ( e ) {
+        var tr = e.currentTarget;
+        var row = tag.dataTable.row( tr );
+        var tdi = $(tr).closest('tr').find("i.fa");
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            $(this).closest('tr').removeClass('shown');
+            tdi.first().removeClass('fa-minus-square');
+            tdi.first().addClass('fa-plus-square');
+        }
+        else {
+            // Open this row
+            row.child( format(e.item) ).show();
+            $(this).closest('tr').addClass('shown');
+            tdi.first().removeClass('fa-plus-square');
+            tdi.first().addClass('fa-minus-square');
+        }
+    }
+
+    function resolveException ( ex ) {
+        let tableHead = '';
+        let body = '';
+        let tableFooter = ''
+        // console.log('resolve call ini');
+        // console.log('var table ini');
+        // console.log(tableHead);
+        // console.log(body);
+        // console.log(tableFooter);
+
+        if ( ex.InnerException === undefined || ex.InnerException == null ) {
+            // console.log('ex.InnerException');
+            // console.log(ex.InnerException);
+            tableHead = '<div>';
+            body = 'empty';
+            tableFooter = '</div>';
+        }
+        else {
+            // console.log('ex.InnerException');
+            // console.log(ex.InnerException);
+
+            tableHead = '<div class="detail-inner-exception">'+
+                            '<label>ClassName:</label>'+
+                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.ClassName) +'</p>'+
+
+                            '<label>Message:</label>'+
+                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.Message) +'</p>'+
+
+                            '<label>Data:</label>'+
+                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.Data) +'</p>'+
+
+                            '<label>HResult:</label>'+
+                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.HResult) +'</p>'+
+
+                            '<label>StackTraceString:</label>'+
+                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.StackTraceString) +'</p>'+
+
+                            '<label>HelpURL:</label>'+
+                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.HelpURL) +'</p>'+
+
+                            '<label>InnerException:</label>'+
+                            '<p class="form-control-static">';
+
+            tableFooter = '</p>'+
+
+                            '<label>RemoteStackIndex:</label>'+
+                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.RemoteStackIndex) +'</p>'+
+
+                            '<label>RemoteStackTraceString:</label>'+
+                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.RemoteStackTraceString) +'</p>'+
+
+                            '<label>Source:</label>'+
+                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.Source) +'</p>'+
+
+                            '<label>WatsonBuckets:</label>'+
+                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.WatsonBuckets) +'</p>'+
+            '</div>';
+
+            body = resolveException(ex.InnerException);
+        }
+        // console.log('resolve call end');
+        // console.log('var table end');
+        // console.log(body);
+        return tableHead + body + tableFooter;
+    }
+
+    // criar linha de detalhes
+    function format ( d ) {
+        // console.log('format call');
+        // console.log(d.item.Exception.InnerException);
+        return '<table cellpadding="2" cellspacing="0" border="0" style="padding-left:5%;">'+
+
+            '<tr>'+
+                '<td class="detail-label"><label>Data:</label></td>'+
+                '<td>'+JSON.stringify(d.item.Exception.Data)+'</td>'+
+            '</tr>'+
+            '<tr>'+
+                '<td class="detail-label"><label>HResult:</label></td>'+
+                '<td>'+JSON.stringify(d.item.Exception.HResult)+'</td>'+
+            '</tr>'+
+            '<tr>'+
+                '<td class="detail-label"><label>StackTraceString:</label></td>'+
+                '<td>'+JSON.stringify(d.item.Exception.StackTraceString)+'</td>'+
+            '</tr>'+
+            '<tr>'+
+                '<td class="detail-label"><label>HelpURL:</label></td>'+
+                '<td>'+JSON.stringify(d.item.Exception.HelpURL)+'</td>'+
+            '</tr>'+
+            '<tr>'+
+                '<td class="detail-label"><label>InnerException:</label></td>'+
+                '<td>'+resolveException(d.item.Exception)+'</td>'+
+            '</tr>'+
+            '<tr>'+
+                '<td class="detail-label"><label>RemoteStackIndex:</label></td>'+
+                '<td>'+JSON.stringify(d.item.Exception.RemoteStackIndex)+'</td>'+
+            '</tr>'+
+            '<tr>'+
+                '<td class="detail-label"><label>RemoteStackTraceString:</label></td>'+
+                '<td>'+JSON.stringify(d.item.Exception.RemoteStackTraceString)+'</td>'+
+            '</tr>'+
+            '<tr>'+
+                '<td class="detail-label"><label>Source:</label></td>'+
+                '<td>'+JSON.stringify(d.item.Exception.Source)+'</td>'+
+            '</tr>'+
+            '<tr>'+
+                '<td class="detail-label"><label>WatsonBuckets:</label></td>'+
+                '<td>'+JSON.stringify(d.item.Exception.WatsonBuckets)+'</td>'+
+            '</tr>'+
+
+        '</table>';
+    }
+
+  </script>
+</report-exceptionslog>

@@ -1,0 +1,385 @@
+/*--------------------------------------------------------------
+# BOOTSTRAP STYLES OVERRIDES
+--------------------------------------------------------------*/
+/* MAIN COLOURS */
+/*
+$inforlub-yellow: #ffd92b;
+$inforlub-light-grey: #ededed;
+$inforlub-dark-grey: #444444;
+$inforlub-dark-background: #202020;
+$inforlub-white: #fff;
+*/
+/*--------------------------------------------------------------
+# Import Colors Overrides
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# COLORS TO OVERRIDE BOOTSTRAP STYLES
+--------------------------------------------------------------*/
+/*
+.btn-primary {
+  color: #ffd92b;
+  background-color: #202020;
+  border-color: #202020;
+}
+.btn-primary:hover {
+  color: #ffd92b;
+  background-color: #444;
+  border-color: #555;
+}
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #ffd92b;
+  background-color: #202020;
+  border-color: #202020;
+}
+ */
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,300i,400,400i,500,700");
+@import url(../tags/wire-frame/wrapper.css);
+@import url(../tags/wire-frame/site-header.css);
+@import url(../tags/wire-frame/toggle-site-navigation.css);
+@import url(../tags/wire-frame/site-messages.css);
+@import url(../tags/wire-frame/site-alerts.css);
+@import url(../tags/wire-frame/site-search.css);
+@import url(../tags/wire-frame/site-logout-button.css);
+@import url(../tags/wire-frame/main-content.css);
+@import url(../tags/wire-frame/bread-crumb.css);
+@import url(../tags/wire-frame/content-body.css);
+@import url(../tags/wire-frame/site-footer.css);
+@import url(../tags/wire-frame/site-navigation.css);
+body {
+  font-family: 'Fira Sans Extra Condensed', Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.main-content-body {
+  padding: 0;
+  margin: 0;
+}
+
+#image-logo {
+  max-width: 150px;
+}
+
+.image-logo--off {
+  display: none;
+}
+
+.form-group label {
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+body.sidenav-toggled site-navigation .fa {
+  color: #ffc107;
+}
+
+/*--------------------------------------------------------------
+# SWITCH CONTROL STYLE SHEET
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# SWITCH CONTROL FOR BOOTSTRAP STYLES
+--------------------------------------------------------------*/
+.label-switch {
+  display: block;
+}
+
+.switch {
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.switch + .lable {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  line-height: 20px;
+  min-height: 18px;
+  min-width: 18px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.switch + .lable::before {
+  cursor: pointer;
+  font-family: fontAwesome;
+  font-weight: normal;
+  font-size: 12px;
+  color: #32a3ce;
+  content: "\a0";
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 0;
+  display: inline-block;
+  text-align: center;
+  height: 16px;
+  line-height: 14px;
+  min-width: 16px;
+  margin-right: 1px;
+  position: relative;
+  top: -1px;
+}
+
+.switch:checked + .lable::before {
+  display: inline-block;
+  content: '\f00c';
+  background-color: #F5F8FC;
+  border-color: #adb5bd;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+}
+
+/* CSS3 on/off switches */
+.switch + .lable {
+  margin: 0 4px;
+  min-height: 24px;
+}
+
+.switch + .lable::before {
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 17px;
+  height: 20px;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: #F5F5F5;
+  -webkit-box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.15);
+  border: 1px solid #CCC;
+  text-align: left;
+  float: left;
+  padding: 0;
+  width: 52px;
+  text-indent: -21px;
+  margin-right: 0;
+  -webkit-transition: text-indent .3s ease;
+  -o-transition: text-indent .3s ease;
+  transition: text-indent .3s ease;
+  top: auto;
+}
+
+.switch.switch-bootstrap + .lable::before {
+  font-family: FontAwesome;
+  content: "\f00d";
+  box-shadow: none;
+  border-width: 0;
+  font-size: 16px;
+  background-color: #a9a9a9;
+  color: #e9ecef;
+  width: 52px;
+  height: 22px;
+  line-height: 21px;
+  text-indent: 32px;
+  -webkit-transition: background 0.1s ease;
+  -o-transition: background 0.1s ease;
+  transition: background 0.1s ease;
+}
+
+.switch.switch-bootstrap + .lable::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  border-radius: 12px;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  background-color: #e9ecef;
+  border: 4px solid #e9ecef;
+  -webkit-transition: left 0.2s ease;
+  -o-transition: left 0.2s ease;
+  transition: left 0.2s ease;
+}
+
+.switch.switch-bootstrap:checked + .lable::before {
+  content: "\f00c";
+  text-indent: 6px;
+  color: #fff;
+  border-color: #b7d3e5;
+}
+
+.switch-primary > .switch.switch-bootstrap:checked + .lable::before {
+  background-color: #007bff;
+}
+
+.switch-success > .switch.switch-bootstrap:checked + .lable::before {
+  background-color: #28a745;
+}
+
+.switch-danger > .switch.switch-bootstrap:checked + .lable::before {
+  background-color: #dc3545;
+}
+
+.switch-info > .switch.switch-bootstrap:checked + .lable::before {
+  background-color: #17a2b8;
+}
+
+.switch-warning > .switch.switch-bootstrap:checked + .lable::before {
+  background-color: #ffc107;
+}
+
+.switch.switch-bootstrap:checked + .lable::after {
+  left: 32px;
+  background-color: #fff;
+  border: 4px solid #fff;
+  text-shadow: 0 -1px 0 rgba(0, 200, 0, 0.25);
+}
+
+/* square */
+.switch-square {
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.switch-square + .lable {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  line-height: 20px;
+  min-height: 18px;
+  min-width: 18px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.switch-square + .lable::before {
+  cursor: pointer;
+  font-family: fontAwesome;
+  font-weight: normal;
+  font-size: 12px;
+  color: #32a3ce;
+  content: "\a0";
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 0;
+  display: inline-block;
+  text-align: center;
+  height: 16px;
+  line-height: 14px;
+  min-width: 16px;
+  margin-right: 1px;
+  position: relative;
+  top: -1px;
+}
+
+.switch-square:checked + .lable::before {
+  display: inline-block;
+  content: '\f00c';
+  background-color: #F5F8FC;
+  border-color: #adb5bd;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+}
+
+/* CSS3 on/off switches */
+.switch-square + .lable {
+  margin: 0 4px;
+  min-height: 24px;
+}
+
+.switch-square + .lable::before {
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 17px;
+  height: 20px;
+  overflow: hidden;
+  border-radius: 2px;
+  background-color: #F5F5F5;
+  -webkit-box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.15);
+  border: 1px solid #CCC;
+  text-align: left;
+  float: left;
+  padding: 0;
+  width: 52px;
+  text-indent: -21px;
+  margin-right: 0;
+  -webkit-transition: text-indent .3s ease;
+  -o-transition: text-indent .3s ease;
+  transition: text-indent .3s ease;
+  top: auto;
+}
+
+.switch-square.switch-bootstrap + .lable::before {
+  font-family: FontAwesome;
+  content: "\f00d";
+  box-shadow: none;
+  border-width: 0;
+  font-size: 16px;
+  background-color: #a9a9a9;
+  color: #e9ecef;
+  width: 52px;
+  height: 22px;
+  line-height: 21px;
+  text-indent: 32px;
+  -webkit-transition: background 0.1s ease;
+  -o-transition: background 0.1s ease;
+  transition: background 0.1s ease;
+}
+
+.switch-square.switch-bootstrap + .lable::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  border-radius: 12px;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  background-color: #e9ecef;
+  border: 4px solid #e9ecef;
+  -webkit-transition: left 0.2s ease;
+  -o-transition: left 0.2s ease;
+  transition: left 0.2s ease;
+}
+
+.switch-square.switch-bootstrap:checked + .lable::before {
+  content: "\f00c";
+  text-indent: 6px;
+  color: #fff;
+  border-color: #b7d3e5;
+}
+
+.switch-primary > .switch-square.switch-bootstrap:checked + .lable::before {
+  background-color: #007bff;
+}
+
+.switch-success > .switch-square.switch-bootstrap:checked + .lable::before {
+  background-color: #28a745;
+}
+
+.switch-danger > .switch-square.switch-bootstrap:checked + .lable::before {
+  background-color: #dc3545;
+}
+
+.switch-info > .switch-square.switch-bootstrap:checked + .lable::before {
+  background-color: #17a2b8;
+}
+
+.switch-warning > .switch-square.switch-bootstrap:checked + .lable::before {
+  background-color: #ffc107;
+}
+
+.switch-square.switch-bootstrap:checked + .lable::after {
+  left: 32px;
+  background-color: #fff;
+  border: 4px solid #fff;
+  text-shadow: 0 -1px 0 rgba(0, 200, 0, 0.25);
+}
+
+.switch-square.switch-bootstrap + .lable::after {
+  border-radius: 2px;
+}
+
+/*--------------------------------------------------------------
+# TAGs STYLE SHEETS
+--------------------------------------------------------------*/

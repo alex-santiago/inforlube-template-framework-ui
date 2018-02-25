@@ -1,0 +1,44 @@
+<bread-crumb>
+  <!-- Breadcrumbs-->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" onclick="{clickBreadCrumb}">
+      <a href="#">{this.item.parentPathDescription}</a>
+    </li>
+    <li class="breadcrumb-item active">{this.item.childPathDescription}</li>
+  </ol>
+
+  <!-- component javascript code -->
+  <script>
+
+    const tag = this;
+
+    this.on('mount', function() {
+      // console.log("mount");
+      // console.log('path');
+      // console.log(path);
+      if (path.current = "/") {
+        objBreadCrumb.parentPathDescription = path.parentDescription;
+        objBreadCrumb.currentPathDescription = path.childDescription;
+      }
+      tag.update();
+    });
+
+    this.on('before-mount', function() {
+      tag.item = objBreadCrumb;
+    });
+
+    breadCrumb.on('updateBreadCrumb', function(parent, child) {
+      objBreadCrumb.parentPathDescription = parent;
+      objBreadCrumb.childPathDescription = child;
+      tag.item = objBreadCrumb;
+      this.update();
+    }.bind(this));
+
+    clickBreadCrumb ( e ) {
+      e.preventDefault();
+      path.reset();
+      e.stopPropagation();
+    }
+
+  </script>
+</bread-crumb>

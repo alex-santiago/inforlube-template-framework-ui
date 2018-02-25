@@ -1,0 +1,66 @@
+<client-systems>
+  <div class="card mb-3">
+    <div class="panel-group" id="cardbody{opts.index}">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <button class="btn btn-default btn-block" type="button" data-toggle="collapse" data-target="#panel{opts.index}" aria-expanded="false" aria-controls="collapseExample">
+                {opts.name}
+              </button>
+          </h4>
+        </div>
+        <div id="panel{opts.index}" class="panel-collapse collapse">
+          <div class="panel-body">
+            <form id="form-system" action="" role="form">
+              <div class="form-group">
+                <label>Id:</label>
+                <input type="text" name="system-id" value="{opts.systemId}" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Url:</label>
+                <input type="text" name="system-url" value="{opts.url}" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Api:</label>
+                <input type="text" name="system-api" value="{opts.api}" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Code:</label>
+                <input type="text" name="system-code" value="{opts.code}" class="form-control">
+              </div>
+              <!-- <div class="form-group">
+                <label>Configuration:</label>
+                <textarea name="system-configuration" value="{JSON.stringify(opts.configuration)}" class="form-control"/>
+              </div> -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="panel-title"><i class="fa fa-database"></i> Configuration:</div>
+                  <div class="panel-body">
+                    <virtual each={config, index in opts.configuration}>
+                      <div class="form-group">
+                        <label>{index}</label>
+                        <input type="text" name="system-url" value="{JSON.stringify(config)}" class="form-control" placeholder="System Configuration">
+                      </div>
+                    </virtual>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- component javascript code -->
+  <script>
+
+    const tag = this;
+
+    this.on('mount', function() {
+    });
+
+    this.on('before-mount', function() {
+    });
+
+  </script>
+</client-systems>

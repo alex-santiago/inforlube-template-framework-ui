@@ -1,0 +1,27 @@
+<toggle-site-navigation>
+  <ul class="navbar-nav sidenav-toggler" >
+    <li class="nav-item" >
+      <a class="nav-link text-center" id="sidenavToggler" onclick={clickToggleNavigation}>
+        <i class="fa fa-fw fa-angle-left"></i>
+      </a>
+    </li>
+  </ul>
+
+  <!-- component javascript code -->
+  <script>
+
+    const tag = this;
+
+    this.on('mount', function() {
+    });
+
+    this.on('before-mount', function() {
+    });
+
+  clickToggleNavigation ( e ) {
+    e.preventDefault();
+    toggleSiteNavigation();
+  }
+
+  </script>
+</toggle-site-navigation>
