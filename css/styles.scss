@@ -58,6 +58,84 @@ $inforlub-white: #fff;
 body.sidenav-toggled site-navigation .fa {
   color: $yellow;
 }
+
+table.dataTable tr:hover, table.table tr:hover {
+  cursor: pointer;
+}
+
+/*--------------------------------------------------------------
+# COLOR OVERRIDES FOR BTN AND Links
+--------------------------------------------------------------*/
+
+.btn-primary {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #343a40;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #23272b;
+  border-color: #1d2124;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #343a40;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #1d2124;
+  border-color: #171a1d;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
+}
+
+a {
+  color: #23272b;
+}
+
+a:hover {
+  color: #1d2124;
+}
+
+.page-link {
+  color: #343a40;
+  background-color: #fff;
+  border: 1px solid #343a40;
+}
+
+.page-link:hover {
+  color: #fff;
+  background-color: #23272b;
+  border-color: #1d2124;
+}
+
+.page-link:focus {
+  box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
+}
+
+.page-item.active .page-link {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #343a40;
+}
+
+.page-item.disabled .page-link {
+  color: #23272b;
+  background-color: #fff;
+  border-color: #1d2124;
+}
 /*--------------------------------------------------------------
 # SWITCH CONTROL STYLE SHEET
 --------------------------------------------------------------*/

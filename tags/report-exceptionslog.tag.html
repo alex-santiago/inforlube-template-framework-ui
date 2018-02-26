@@ -1,30 +1,30 @@
 <report-exceptionslog>
   <div class="card mb-3">
-    <div class="card-header"><i class="fa fa-bug"></i> Report ExceptionsLog</div>
+    <div class="card-header"><i class="fa fa-bug"></i> { language.exception.reportExceptionslog.title }</div>
     <div class="card-body">
       <form id="search-form" role="form">
         <div class="row mb-3">
           <div class="col-sm-12 col-md-12 col-lg-4">
             <div class="form-group">
-              <label>Api</label>
-              <input class="form-control" placeholder="Api name" type="text" ref="inputApi">
+              <label>{ language.exception.reportExceptionslog.api }</label>
+              <input class="form-control" placeholder={ language.exception.reportExceptionslog.api } type="text" ref="inputApi">
             </div>
           </div>
           <div class="col-sm-6 col-md-6 col-lg-4">
             <div class="form-group">
-              <label>Data de Início</label>
-              <input class="form-control" placeholder="Start date to search" type="datetime-local" ref="inputStartDate">
+              <label>{ language.exception.reportExceptionslog.startDate }</label>
+              <input class="form-control" placeholder={ language.exception.reportExceptionslog.startDate } type="datetime-local" ref="inputStartDate">
             </div>
           </div>
           <div class="col-sm-6 col-md-6 col-lg-4">
             <div class="form-group">
-              <label>Data de Fim</label>
-              <input class="form-control" placeholder="End date to search" type="datetime-local"  ref="inputEndDate">
+              <label>{ language.exception.reportExceptionslog.endDate }</label>
+              <input class="form-control" placeholder={ language.exception.reportExceptionslog.endDate } type="datetime-local"  ref="inputEndDate">
             </div>
           </div>
           <div class="col-lg-12">
             <div class="form-group">
-              <button class="btn btn-primary" onclick={onButtonSearchClick}><i class="fa fa-search"></i> Search</button>
+              <button class="btn btn-primary" onclick={onButtonSearchClick}><i class="fa fa-search"></i> { language.globals.search }</button>
             </div>
           </div>
         </div>
@@ -34,19 +34,19 @@
           <thead>
             <tr>
               <th></th>
-              <th>Date</th>
-              <th>Api</th>
-              <th>Class Name</th>
-              <td>Message</td>
+              <th>{ language.exception.reportExceptionslog.date }</th>
+              <th>{ language.exception.reportExceptionslog.api }</th>
+              <th>{ language.exception.reportExceptionslog.exceptionClassName }</th>
+              <td>{ language.exception.reportExceptionslog.exceptionMessage }</td>
             </tr>
           </thead>
           <tfoot>
             <tr>
               <th></th>
-              <th>Date</th>
-              <th>Api</th>
-              <th>Class Name</th>
-              <td>Message</td>
+              <th>{ language.exception.reportExceptionslog.date }</th>
+              <th>{ language.exception.reportExceptionslog.api }</th>
+              <th>{ language.exception.reportExceptionslog.exceptionClassName }</th>
+              <td>{ language.exception.reportExceptionslog.exceptionMessage }</td>
             </tr>
           </tfoot>
           <tbody>
@@ -72,9 +72,10 @@
 
     this.on('mount', function() {
       var tomorrow = new Date(new Date().setDate(new Date().getDate()+1));
-      tag.refs.inputStartDate.value = '2018-02-11T00:00:00'; //new Date().toISOString().slice(0, 10)+'T00:00:00';
+      // tag.refs.inputStartDate.value = new Date().toISOString().slice(0, 10)+'T00:00:00';
+      tag.refs.inputStartDate.value = '2018-02-11T00:00:00';
       tag.refs.inputEndDate.value = tomorrow.toISOString().slice(0, 10)+'T00:00:00';
-      tag.refs.inputApi.value = 'Inforlube';
+      tag.refs.inputApi.value = "";
     });
 
     this.on('before-mount', function() {
@@ -105,7 +106,7 @@
                         "orderable":      false,
                         "data":           null,
                         "defaultContent": '',
-                        "render": function () {
+                        "render": function iconDetailsControl() {
                           return '<i class="fa fa-plus-square" aria-hidden="true"></i>';
                         },
                         width: "15px"
@@ -154,32 +155,32 @@
         if ( ex.InnerException === undefined || ex.InnerException == null ) {
             // console.log('ex.InnerException');
             // console.log(ex.InnerException);
-            tableHead = '<div>';
-            body = 'empty';
+            tableHead = '<div class="form-group">';
+            body = '<label>No data returned</label>';
             tableFooter = '</div>';
         }
         else {
             // console.log('ex.InnerException');
             // console.log(ex.InnerException);
 
-            tableHead = '<div class="detail-inner-exception">'+
+            tableHead = '<div class="form-group">'+
                             '<label>ClassName:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.ClassName) +'</p>'+
+                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.ClassName ? ex.InnerException.ClassName : "No Info")) +'</p>'+
 
                             '<label>Message:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.Message) +'</p>'+
+                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.Message ? ex.InnerException.Message : "No Info")) +'</p>'+
 
                             '<label>Data:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.Data) +'</p>'+
+                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.Data ? ex.InnerException.Data : "No Info")) +'</p>'+
 
                             '<label>HResult:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.HResult) +'</p>'+
+                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.HResult ? ex.InnerException.HResult : "No Info")) +'</p>'+
 
                             '<label>StackTraceString:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.StackTraceString) +'</p>'+
+                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.StackTraceString ? ex.InnerException.StackTraceString : "No Info")) +'</p>'+
 
                             '<label>HelpURL:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.HelpURL) +'</p>'+
+                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.HelpURL ? ex.InnerException.HelpURL : "No Info")) +'</p>'+
 
                             '<label>InnerException:</label>'+
                             '<p class="form-control-static">';
@@ -187,16 +188,16 @@
             tableFooter = '</p>'+
 
                             '<label>RemoteStackIndex:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.RemoteStackIndex) +'</p>'+
+                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.RemoteStackIndex ? ex.InnerException.RemoteStackIndex : "No Info")) +'</p>'+
 
                             '<label>RemoteStackTraceString:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.RemoteStackTraceString) +'</p>'+
+                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.RemoteStackTraceString ? ex.InnerException.RemoteStackTraceString : "No Info")) +'</p>'+
 
                             '<label>Source:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.Source) +'</p>'+
+                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.Source ? ex.InnerException.Source : "No Info")) +'</p>'+
 
                             '<label>WatsonBuckets:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify(ex.InnerException.WatsonBuckets) +'</p>'+
+                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.WatsonBuckets ? ex.InnerException.WatsonBuckets : "No Info")) +'</p>'+
             '</div>';
 
             body = resolveException(ex.InnerException);
@@ -210,47 +211,53 @@
     // criar linha de detalhes
     function format ( d ) {
         // console.log('format call');
-        // console.log(d.item.Exception.InnerException);
-        return '<table cellpadding="2" cellspacing="0" border="0" style="padding-left:5%;">'+
+        // console.log( ( d.item.Exception.InnerE ? Exception.InnerE .xxx : "No Info")xception);
 
-            '<tr>'+
-                '<td class="detail-label"><label>Data:</label></td>'+
-                '<td>'+JSON.stringify(d.item.Exception.Data)+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td class="detail-label"><label>HResult:</label></td>'+
-                '<td>'+JSON.stringify(d.item.Exception.HResult)+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td class="detail-label"><label>StackTraceString:</label></td>'+
-                '<td>'+JSON.stringify(d.item.Exception.StackTraceString)+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td class="detail-label"><label>HelpURL:</label></td>'+
-                '<td>'+JSON.stringify(d.item.Exception.HelpURL)+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td class="detail-label"><label>InnerException:</label></td>'+
-                '<td>'+resolveException(d.item.Exception)+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td class="detail-label"><label>RemoteStackIndex:</label></td>'+
-                '<td>'+JSON.stringify(d.item.Exception.RemoteStackIndex)+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td class="detail-label"><label>RemoteStackTraceString:</label></td>'+
-                '<td>'+JSON.stringify(d.item.Exception.RemoteStackTraceString)+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td class="detail-label"><label>Source:</label></td>'+
-                '<td>'+JSON.stringify(d.item.Exception.Source)+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td class="detail-label"><label>WatsonBuckets:</label></td>'+
-                '<td>'+JSON.stringify(d.item.Exception.WatsonBuckets)+'</td>'+
-            '</tr>'+
+        if ( d.item.Exception === undefined || d.item.Exception == null ) {
+            return '<div class="form-group"> <label>No data returned for the exception.</label></div>';
+        }
+        else {
+          return '<table cellpadding="2" cellspacing="0" border="0" style="padding-left:5%;">'+
 
-        '</table>';
+              '<tr>'+
+                  '<td class="detail-label"><label>Data:</label></td>'+
+                  '<td>'+JSON.stringify( ( d.item.Exception.Data ? d.item.Exception.Data : "No Info"))+'</td>'+
+              '</tr>'+
+              '<tr>'+
+                  '<td class="detail-label"><label>HResult:</label></td>'+
+                  '<td>'+JSON.stringify( ( d.item.Exception.HResult ? d.item.Exception.HResult : "No Info"))+'</td>'+
+              '</tr>'+
+              '<tr>'+
+                  '<td class="detail-label"><label>StackTraceString:</label></td>'+
+                  '<td>'+JSON.stringify( ( d.item.Exception.StackTraceString ? d.item.Exception.StackTraceString : "No Info"))+'</td>'+
+              '</tr>'+
+              '<tr>'+
+                  '<td class="detail-label"><label>HelpURL:</label></td>'+
+                  '<td>'+JSON.stringify( ( d.item.Exception.HelpURL ? d.item.Exception.HelpURL : "No Info"))+'</td>'+
+              '</tr>'+
+              '<tr>'+
+                  '<td class="detail-label"><label>InnerException:</label></td>'+
+                  '<td>'+resolveException(d.item.Exception)+'</td>'+
+              '</tr>'+
+              '<tr>'+
+                  '<td class="detail-label"><label>RemoteStackIndex:</label></td>'+
+                  '<td>'+JSON.stringify( ( d.item.Exception.RemoteStackIndex ? d.item.Exception.RemoteStackIndex : "No Info"))+'</td>'+
+              '</tr>'+
+              '<tr>'+
+                  '<td class="detail-label"><label>RemoteStackTraceString:</label></td>'+
+                  '<td>'+JSON.stringify( ( d.item.Exception.RemoteStackTraceString ? d.item.Exception.RemoteStackTraceString : "No Info"))+'</td>'+
+              '</tr>'+
+              '<tr>'+
+                  '<td class="detail-label"><label>Source:</label></td>'+
+                  '<td>'+JSON.stringify( ( d.item.Exception.Source ? d.item.Exception.source : "No Info"))+'</td>'+
+              '</tr>'+
+              '<tr>'+
+                  '<td class="detail-label"><label>WatsonBuckets:</label></td>'+
+                  '<td>'+JSON.stringify( ( d.item.Exception.WatsonBuckets ? d.item.Exception.WatsonBuckets : "No Info"))+'</td>'+
+              '</tr>'+
+
+          '</table>';
+        }
     }
 
   </script>

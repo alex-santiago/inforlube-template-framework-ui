@@ -2,7 +2,9 @@ var languagePtBr = {
 
     globals: {
         changePassword: 'Trocar senha',
-        logout: 'Sair do sistema'
+        logout: 'Sair do sistema',
+        back: 'Voltar',
+        search: 'Pesquisar'
     },
 
     country: {
@@ -74,6 +76,90 @@ var languagePtBr = {
         motorcycles: {
             name: "Motocicletas"
         }
+    },
+
+    client: {
+        listClients: {
+          title: "Lista de Clientes",
+          name: "Nome",
+          tradeName: "Nome Fantasia"
+        },
+        listClientDetails: {
+          title: "Detalhes do Cliente",
+          id: "Id",
+          name: "Nome",
+          tradeName: "Nome Fantasia",
+          managerUrl: "Url do Gerenciador",
+          systems: "Sistemas",
+          systemId: "Id",
+          systemApi: "Api",
+          systemCode: "Código",
+          systemUrl: "Url",
+          systemConfiguration: "Configurações",
+          systemCountryId: "Código de País",
+          systemLegacyConfigurationId: "Id de Configuração do Legado",
+          systemReturnImages: "Retornar Imagens",
+          systemImagesBasePath: "Caminho Base das Imagens",
+          systemUseAlternativeViscosity: "Usar Viscosidade Alternativa",
+          stores: "Lojas"
+        }
+    },
+
+    protocol: {
+      reportProtocols: {
+        title: 'Relatório de Protocolos',
+        clientName: "Nome do Cliente",
+        api: "Api",
+        systemName: "Nome do Sistema",
+        userName: "Nome de Usuário",
+        createdAtDate: "Data de Criação",
+        closedAtDate: "Data de Fechamento",
+        closed: "Fechado",
+        sessionToken: "Token de Sessão",
+        id: "Id",
+        clientId: 'Id de Cliente',
+        clientName: 'Nome do Cliente',
+        systemId: 'Id do Sistema',
+        systemName: 'Nome do Sistema',
+        userTitle: 'Usuário',
+        userId: 'Id de Usuário',
+        userName: 'Nome de Usuário',
+        accountId: 'Id da Conta de Usuário',
+        email: 'email',
+        detailsTitle: 'Detalhes',
+        detailsYear: 'Ano',
+        detailsBrandId: 'Id da Marca',
+        detailsModelId: 'Id do Modelo',
+        detailsFuelId: 'Id do Combustível',
+        detailsEngineId: 'Id do Motor',
+        detailsVehicleTypeId: 'Id do Tipo de Veículo',
+        requestTitle: 'Request',
+        requestApi: 'Api',
+        requestDate: 'Data',
+        requestIpAddress: 'Endereço IP',
+        requestContentType: 'Tipo de Conteúdo',
+        requestUri: 'Uri'
+      },
+      protocolDetails: {
+        title: 'Detalhes do Protocolo',
+        titleProtocol: 'Protocolo'
+      }
+    },
+
+    exception: {
+      reportExceptionslog: {
+        title: "Relatório Exceptions Log",
+        startDate: "Data Inicial",
+        endDate: "Data Final",
+        api: "Api",
+        date: "Data",
+        exceptionClassName: "Classe",
+        exceptionMessage: "Mensagem",
+      }
+    },
+
+    header: {
+        apptitle: 'Inforlube UI Templates'
     },
 
     footer: {

@@ -1,5 +1,99 @@
 var languageEnUs = {
 
+  globals: {
+      changePassword: 'Change Password',
+      logout: 'Logout',
+      back: 'Back',
+      search: 'Search'
+  },
+
+  header: {
+      apptitle: 'Inforlub UI Templates'
+  },
+
+  footer: {
+      copyright: "Copyright @ Abis - 2017 | 2018 - All rights reserved"
+  },
+
+  client: {
+      listClients: {
+        title: "Clients List",
+        name: "Name",
+        tradeName: "Trade Name"
+      },
+      listClientDetails: {
+        title: "Client Details",
+        id: "Id",
+        name: "Name",
+        tradeName: "Trade Name",
+        managerUrl: "Manager Url",
+        systems: "Systems",
+        systemId: "Id",
+        systemApi: "Api",
+        systemCode: "Code",
+        systemUrl: "Url",
+        systemConfiguration: "Configuration",
+        systemCountryId: "Country Id",
+        systemLegacyConfigurationId: "Legacy Configuration Id",
+        systemReturnImages: "Return Images",
+        systemImagesBasePath: "Images Base Path",
+        systemUseAlternativeViscosity: "Use Alternative Viscosity",
+        stores: "Stores"
+      }
+  },
+
+  protocol: {
+    reportProtocols: {
+      title: 'Protocols Report',
+      clientName: "Client Name",
+      api: "Api",
+      systemName: "System Name",
+      userName: "User Name",
+      createdAtDate: "Created at",
+      closedAtDate: "Closed at",
+      closed: "Closed",
+      sessionToken: "Session Token",
+      id: "Id",
+      clientId: 'Client Id',
+      clientName: 'Client Name',
+      systemId: 'System Id',
+      systemName: 'System Name',
+      userTitle: 'User',
+      userId: 'User Id',
+      userName: 'User Name',
+      accountId: 'User Account',
+      email: 'email',
+      detailsTitle: 'Details',
+      detailsYear: 'Year',
+      detailsBrandId: 'Brand Id',
+      detailsModelId: 'Model Id',
+      detailsFuelId: 'Fuel Id',
+      detailsEngineId: 'Engine Id',
+      detailsVehicleTypeId: 'Vehicle Type Id',
+      requestTitle: 'Request',
+      requestApi: 'Api',
+      requestDate: 'Date',
+      requestIpAddress: 'IP Address',
+      requestContentType: 'Content Type',
+      requestUri: 'Uri'
+    },
+    protocolDetails: {
+      title: 'Protocol Details',
+      titleProtocol: 'Protocol'
+    }
+  },
+
+  exception: {
+    reportExceptionslog: {
+      title: "Exceptions Log Report",
+      startDate: "Start Date",
+      endDate: "End Date",
+      api: "Api",
+      date: "Date",
+      exceptionClassName: "Class",
+      exceptionMessage: "Menssage",
+    }
+  },
     navbar: {
         title: {
             vehicleTypes: "Vehicle Types",
@@ -18,10 +112,6 @@ var languageEnUs = {
             enUS: "English",
             esES: "Spanish"
         }
-    },
-
-    footer: {
-        copyright: "Copyright @ Abis - 2017 | 2018 - All rights reserved"
     },
 
     brands: {

@@ -1,7 +1,7 @@
 var inforlub = {};
 
 var language = {};
-language = languagePtBr;
+language = languageEnUs;
 
 var dictionary = {};
 dictionary = dictionaryPtBr;
