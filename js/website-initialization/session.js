@@ -6,10 +6,6 @@ var loadSession = function(){
     if(sessionObj == null){
         clearSession();
     }
-    else{
-        if(sessionObj.checklist.actions == undefined)
-            sessionObj.checklist.actions = [];
-    }
 }
 
 var saveSession = function(){
@@ -19,21 +15,6 @@ var saveSession = function(){
 var clearSession = function(){
     sessionObj = new Object();
 
-    sessionObj.vehicleType = new Object();
-    sessionObj.year = 0;
-    sessionObj.brand = new Object();
-    sessionObj.model = new Object();
-    sessionObj.fuel = new Object();
-    sessionObj.engine = new Object();
-    sessionObj.frequentUse = new Object();
-    sessionObj.checklist = new Object();
-    sessionObj.checklist.items = [];
-    sessionObj.checklist.actions = [];
-    sessionObj.cart = new Object();
-    sessionObj.cart.packages = new Array();
-    sessionObj.clients = new Object();
-    sessionObj.clients.clientlist = new Object();
-    sessionObj.clients.clientIndex = -1;
     sessionObj.protocols = new Object();
     sessionObj.protocols.protocollist = new Object();
     sessionObj.protocols.protocolIndex = -1;

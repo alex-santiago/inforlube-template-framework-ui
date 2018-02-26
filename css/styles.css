@@ -9,42 +9,13 @@ $inforlub-dark-grey: #444444;
 $inforlub-dark-background: #202020;
 $inforlub-white: #fff;
 */
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,300i,400,400i,500,700");
 /*--------------------------------------------------------------
 # Import Colors Overrides
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
 # COLORS TO OVERRIDE BOOTSTRAP STYLES
 --------------------------------------------------------------*/
-/*
-.btn-primary {
-  color: #ffd92b;
-  background-color: #202020;
-  border-color: #202020;
-}
-.btn-primary:hover {
-  color: #ffd92b;
-  background-color: #444;
-  border-color: #555;
-}
-.btn-primary.disabled, .btn-primary:disabled {
-  color: #ffd92b;
-  background-color: #202020;
-  border-color: #202020;
-}
- */
-@import url("https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:300,300i,400,400i,500,700");
-@import url(../tags/wire-frame/wrapper.css);
-@import url(../tags/wire-frame/site-header.css);
-@import url(../tags/wire-frame/toggle-site-navigation.css);
-@import url(../tags/wire-frame/site-messages.css);
-@import url(../tags/wire-frame/site-alerts.css);
-@import url(../tags/wire-frame/site-search.css);
-@import url(../tags/wire-frame/site-logout-button.css);
-@import url(../tags/wire-frame/main-content.css);
-@import url(../tags/wire-frame/bread-crumb.css);
-@import url(../tags/wire-frame/content-body.css);
-@import url(../tags/wire-frame/site-footer.css);
-@import url(../tags/wire-frame/site-navigation.css);
 body {
   font-family: 'Fira Sans Extra Condensed', Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1rem;
@@ -459,4 +430,52 @@ a:hover {
 
 /*--------------------------------------------------------------
 # TAGs STYLE SHEETS
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Typography
+# Accessibility
+# Clearings
+# Elements
+# Navigation
+# Header
+# Body
+# Footer
+# Forms
+# Media
+# MEDIA QUERIES SECTION
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Accessibility
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Clearings
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Elements
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Navigation
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Body
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Forms
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Media
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# MEDIA QUERIES SECTION
 --------------------------------------------------------------*/

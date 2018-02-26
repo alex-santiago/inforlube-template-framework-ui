@@ -2,8 +2,8 @@ var app = {};
 
 app.init = function(){
 
-    //loadSession();
-    
+    clearSession();
+
     routes.init();
 
     riot.compile(function() {
