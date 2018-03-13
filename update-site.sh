@@ -76,6 +76,8 @@ echo "./js/website-initialization/breadcrumb.js" "$DESTINATION/js/website-initia
 cp -a "./js/website-initialization/breadcrumb.js" "$DESTINATION/js/website-initialization/"
 echo "./js/website-initialization/controllers.js" "$DESTINATION/js/website-initialization/"
 cp -np "./js/website-initialization/controllers.js" "$DESTINATION/js/website-initialization/"
+echo "./js/website-initialization/formvalidation.js" "$DESTINATION/js/website-initialization/"
+cp -a "./js/website-initialization/formvalidation.js" "$DESTINATION/js/website-initialization/"
 echo "./js/website-initialization/globals.js" "$DESTINATION/js/website-initialization/"
 cp -a "./js/website-initialization/globals.js" "$DESTINATION/js/website-initialization/"
 echo "./js/website-initialization/host.js" "$DESTINATION/js/website-initialization/"
