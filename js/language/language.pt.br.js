@@ -78,33 +78,6 @@ var languagePtBr = {
         }
     },
 
-    client: {
-        listClients: {
-          title: "Lista de Clientes",
-          name: "Nome",
-          tradeName: "Nome Fantasia"
-        },
-        listClientDetails: {
-          title: "Detalhes do Cliente",
-          id: "Id",
-          name: "Nome",
-          tradeName: "Nome Fantasia",
-          managerUrl: "Url do Gerenciador",
-          systems: "Sistemas",
-          systemId: "Id",
-          systemApi: "Api",
-          systemCode: "Código",
-          systemUrl: "Url",
-          systemConfiguration: "Configurações",
-          systemCountryId: "Código de País",
-          systemLegacyConfigurationId: "Id de Configuração do Legado",
-          systemReturnImages: "Retornar Imagens",
-          systemImagesBasePath: "Caminho Base das Imagens",
-          systemUseAlternativeViscosity: "Usar Viscosidade Alternativa",
-          stores: "Lojas"
-        }
-    },
-
     protocol: {
       reportProtocols: {
         title: 'Relatório de Protocolos',
@@ -155,6 +128,7 @@ var languagePtBr = {
         date: "Data",
         exceptionClassName: "Classe",
         exceptionMessage: "Mensagem",
+        exceptionDetailTitle: "Exception Details"
       }
     },
 

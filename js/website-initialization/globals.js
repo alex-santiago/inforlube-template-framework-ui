@@ -66,3 +66,42 @@ getActionImage = function(id){
     if(id == 5){ return "images/shopping-cart.png"; }       // Sale
     if(id == 6){ return "images/sell-and-service.png"; }    // Sale + Change
 }
+
+const formatLargeString = (text, maxSize) => {
+  if (text) {
+    if (maxSize == 0) {
+      let scr = screen.width;
+      if (scr <= 576) {
+        maxSize = Math.round(scr * 0.05);
+      }
+      else {
+        if ( (scr <= 768) ) {
+          maxSize = Math.round(scr * 0.05);
+        }
+        else {
+          if ( (scr <= 1024) ) {
+            maxSize = Math.round(scr * 0.05);
+          }
+          else {
+            maxSize = Math.round(scr * 0.1);
+          }
+        }
+      }
+    }
+    if (text.length > maxSize) {
+      return (text.substring(0, maxSize) + " (...)");
+    }
+    else {
+      return text;
+    }
+  }
+  else {
+    return "No info";
+  }
+};
+
+const daysBetweenDates = (date1, date2) => {
+  let days = moment.utc(date2).diff(moment.utc(date1));
+  days = days / (24 * 60 * 60 * 1000)
+  return days;
+};

@@ -14,10 +14,8 @@ var saveSession = function(){
 
 var clearSession = function(){
     sessionObj = new Object();
-
     sessionObj.protocols = new Object();
-    sessionObj.protocols.protocollist = new Object();
-    sessionObj.protocols.protocolIndex = -1;
+    sessionObj.exceptions = new Object();
 
     saveSession();
 }

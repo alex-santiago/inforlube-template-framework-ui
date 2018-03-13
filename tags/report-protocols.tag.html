@@ -1,99 +1,82 @@
 <report-protocols>
   <div class="card mb-3">
-    <div class="card-header"><i class="fa fa-table"></i> { language.protocol.reportProtocols.title }</div>
+    <div class="card-header">
+      <i class="fa fa-table"></i> { language.protocol.reportProtocols.title }</div>
     <div class="card-body">
       <div class="row mb-3">
-          <form id="search-form" role="form">
-            <div class="row">
-              <div class="col-sm-6 col-md-6 col-lg-6">
-                <div class="form-group">
-                  <label>{ language.protocol.reportProtocols.clientName }</label>
-                  <input class="form-control" placeholder={ language.protocol.reportProtocols.clientName } type="text" ref="inputClientName">
-                </div>
-                <div class="form-group">
-                  <label>{ language.protocol.reportProtocols.systemName }</label>
-                  <input class="form-control" placeholder={ language.protocol.reportProtocols.systemName } type="text" ref="inputSystemName">
-                </div>
+        <form id="search-form" role="form" class="custom-validation">
+          <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <div class="form-group">
+                <label>{ language.protocol.reportProtocols.clientName }</label>
+                <input class="form-control" placeholder={ language.protocol.reportProtocols.clientName } type="text" id="inputClientName" ref="inputClientName">
               </div>
-              <div class="col-sm-6 col-md-6 col-lg-6">
-                <div class="form-group">
-                  <label>{ language.protocol.reportProtocols.api }</label>
-                  <input class="form-control" placeholder={ language.protocol.reportProtocols.api } type="text" ref="inputApi">
-                </div>
-                <div class="form-group">
-                  <label>{ language.protocol.reportProtocols.userName }</label>
-                  <input class="form-control" placeholder={ language.protocol.reportProtocols.userName } type="text" ref="inputUserName">
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-6 col-lg-6">
-                <div class="form-group">
-                  <label>{ language.protocol.reportProtocols.createdAtDate }</label>
-                  <input class="form-control" placeholder={ language.protocol.reportProtocols.createdAtDate } type="datetime-local" ref="inputStartDate">
-                </div>
-                <div class="form-group">
-                  <label>{ language.protocol.reportProtocols.closedAtDate }</label>
-                  <input class="form-control" placeholder={ language.protocol.reportProtocols.closedAtDate } type="datetime-local"  ref="inputEndDate">
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-6 col-lg-6">
-                <div class="form-group">
-                  <label>{ language.protocol.reportProtocols.closed }</label>
-                  <label class="label-switch switch-warning">
-	                  <input type="checkbox" class="switch-square switch-bootstrap" ref="inputClosed" >
-	                  <span class="lable"></span>
-                  </label>
-                  <!-- <input class="form-control" placeholder="Closed name" type="text" ref="inputClosed"> -->
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="form-group">
-                  <button class="btn btn-primary" onclick={onButtonSearchClick}><i class="fa fa-search"></i> { language.globals.search }</button>
-                </div>
+              <div class="form-group">
+                <label>{ language.protocol.reportProtocols.systemName }</label>
+                <input class="form-control" placeholder={ language.protocol.reportProtocols.systemName } type="text" id="inputSystemName" ref="inputSystemName">
               </div>
             </div>
-          </form>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <div class="form-group">
+                <label>{ language.protocol.reportProtocols.api }</label>
+                <input class="form-control" placeholder={ language.protocol.reportProtocols.api } type="text" id="inputApi" ref="inputApi">
+              </div>
+              <div class="form-group">
+                <label>{ language.protocol.reportProtocols.userName }</label>
+                <input class="form-control" placeholder={ language.protocol.reportProtocols.userName } type="text" id="inputUserName" ref="inputUserName">
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <div class="form-group">
+                <label>{ language.protocol.reportProtocols.createdAtDate }</label>
+                <input class="form-control" placeholder={ language.protocol.reportProtocols.createdAtDate } type="datetime-local" required id="inputStartDate" ref="inputStartDate">
+              </div>
+              <div class="form-group">
+                <label>{ language.protocol.reportProtocols.closedAtDate }</label>
+                <input class="form-control" placeholder={ language.protocol.reportProtocols.closedAtDate } type="datetime-local" required id="inputEndDate" ref="inputEndDate">
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <div class="form-group">
+                <label>{ language.protocol.reportProtocols.closed }</label>
+                <label class="label-switch switch-warning">
+                  <input type="checkbox" class="switch-square switch-bootstrap" id="inputClosed" ref="inputClosed">
+                  <span class="lable"></span>
+                </label>
+                <!-- <input class="form-control" placeholder="Closed name" type="text" ref="inputClosed"> -->
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <button class="btn btn-primary" onclick={onButtonSearchClick}>
+                  <i class="fa fa-search"></i> { language.globals.search }</button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
-      <div class="table-responsive">
+      <div class="table-responsive" if={drawGrid}>
         <table id="reporttable" class="dataTable table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>{ language.protocol.reportProtocols.id }</th>
-                    <th>{ language.protocol.reportProtocols.api }</th>
-                    <th>{ language.protocol.reportProtocols.sessionToken }</th>
-                    <th>{ language.protocol.reportProtocols.clientName }</th>
-                    <th>{ language.protocol.reportProtocols.systemName }</th>
-                    <th>{ language.protocol.reportProtocols.userName }</th>
-                    <th>{ language.protocol.reportProtocols.createdAtDate }</th>
-                    <th>{ language.protocol.reportProtocols.closedAtDate }</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                  <th></th>
-                  <th>{ language.protocol.reportProtocols.id }</th>
-                  <th>{ language.protocol.reportProtocols.api }</th>
-                  <th>{ language.protocol.reportProtocols.sessionToken }</th>
-                  <th>{ language.protocol.reportProtocols.clientName }</th>
-                  <th>{ language.protocol.reportProtocols.systemName }</th>
-                  <th>{ language.protocol.reportProtocols.userName }</th>
-                  <th>{ language.protocol.reportProtocols.createdAtDate }</th>
-                  <th>{ language.protocol.reportProtocols.closedAtDate }</th>
-                </tr>
-            </tfoot>
-            <tbody>
-                <tr each={item in this.items} onclick={ onClickNavigate } >
-                    <td ></td>
-                    <td>{ item.Id }</td>
-                    <td>{ item.Api }</td>
-                    <td>{ item.SessionToken }</td>
-                    <td>{ (item.Client ? item.Client.Name : "No info") }</td>
-                    <td>{ (item.System ? item.System.Name : "No info") }</td>
-                    <td>{ (item.User ? item.User.Name : "No info") }</td>
-                    <td>{ item.CreatedAt }</td>
-                    <td>{ item.ClosedAt }</td>
-                </tr>
-            </tbody>
+          <thead>
+            <tr>
+              <th>{ language.protocol.reportProtocols.api }</th>
+              <th>{ language.protocol.reportProtocols.clientName }</th>
+              <th>{ language.protocol.reportProtocols.systemName }</th>
+              <th>{ language.protocol.reportProtocols.userName }</th>
+              <th>{ language.protocol.reportProtocols.createdAtDate }</th>
+              <th>{ language.protocol.reportProtocols.closedAtDate }</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr each={item in sessionObj.protocols.protocolList} onclick={()=>onClickNavigate(item)}>
+              <td>{item.api }</td>
+              <td>{item.client.name }</td>
+              <td>{item.system.name }</td>
+              <td>{item.user.name }</td>
+              <td>{ moment(item.createdAt).format('DD/MM/YYYY HH:mm:ss') }</td>
+              <td>{ moment(item.closedAt).format('DD/MM/YYYY HH:mm:ss') }</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
@@ -103,99 +86,100 @@
   <script>
 
     const tag = this;
+    tag.drawGrid = false;
 
-    this.on('mount', function() {
-      var tomorrow = new Date(new Date().setDate(new Date().getDate()+1));
-      tag.refs.inputStartDate.value = new Date().toISOString().slice(0, 10)+'T00:00:00';
-      tag.refs.inputEndDate.value = tomorrow.toISOString().slice(0, 10)+'T00:00:00';
-      // tag.refs.inputApi.value = '';
-      tag.refs.inputApi.value = 'Inforlube';
-      tag.refs.inputStartDate.value = '2018-02-09T19:30:00'
-      tag.refs.inputEndDate.value = '2018-02-09T19:50:00'
+    this.on('mount', function () {
+      var tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
+      tag.refs.inputStartDate.value = new Date().toISOString().slice(0, 10) + 'T00:00:00';
+      tag.refs.inputEndDate.value = tomorrow.toISOString().slice(0, 10) + 'T00:00:00';
+      tag.refs.inputApi.value = '';
+      // tag.refs.inputStartDate.value = '2018-03-01T00:00:00'
+      // tag.refs.inputEndDate.value = '2018-03-10T00:00:00'
       tag.refs.inputClientName.value = "";
       tag.refs.inputSystemName.value = "";
       tag.refs.inputUserName.value = "";
       tag.refs.inputClosed.checked = true;
 
+      if (sessionObj.protocols.protocolList != null && sessionObj.protocols.protocolList.length > 0) {
+        tag.drawGrid = true;
+        tag.update();
+        createDataTable();
+      }
+      else {
+        tag.drawGrid = false;
+        tag.update();
+      }
+      // Remove browsers default Form validation
+      nativeFormValidationOff();
     });
 
-    this.on('before-mount', function() {
+    this.on('before-mount', function () {
     });
 
     // Evento Search button
     onButtonSearchClick(e){
-        if(tag.dataTable)
-            tag.dataTable.destroy();
+      var parameters = {};
+      parameters.Api = tag.refs.inputApi.value;
+      parameters.CreatedAtStartDate = tag.refs.inputStartDate.value;
+      parameters.CreatedAtEndDate = tag.refs.inputEndDate.value;
+      parameters.ClientName = tag.refs.inputClientName.value;
+      parameters.SystemName = tag.refs.inputSystemName.value;
+      parameters.UserName = tag.refs.inputUserName.value;
+      parameters.Closed = tag.refs.inputClosed.checked;
 
-        var parameters = {};
-        parameters.Api = tag.refs.inputApi.value;
-        parameters.CreatedAtStartDate = tag.refs.inputStartDate.value;
-        parameters.CreatedAtEndDate = tag.refs.inputEndDate.value;
-        parameters.ClientName = tag.refs.inputClientName.value;
-        parameters.SystemName = tag.refs.inputSystemName.value;
-        parameters.UserName = tag.refs.inputUserName.value;
-        parameters.Closed = tag.refs.inputClosed.checked;
+      // console.log(parameters);
+      // console.log(JSON.stringify(parameters));
 
-        // console.log(parameters);
-        // console.log(JSON.stringify(parameters));
+      // Call the form validation and passes a custom function to validate other fields
+      if (formValidationPassed(customValidationPassed)) {
+        inforlub.controllers.protocols.getprotocols(parameters, function (json) {
+          sessionObj.protocols.protocolList = json;
+          saveSession();
 
-        inforlub.controllers.protocols.getprotocols(parameters, function(json){
-            // json = JSON.parse(protocolJSON);
-            tag.items = json;
-            tag.update();
-
-            loadSession();
-            sessionObj.protocols.protocollist = json;
-            sessionObj.protocols.protocolIndex = -1;
-            saveSession();
-
-            // console.log('json');
-            // console.log(json);
-            createDataTable (json);
-
+          if (sessionObj.protocols.protocolList != null && sessionObj.protocols.protocolList.length > 0) {
+            tag.drawGrid = true;
+          }
+          else {
+            tag.drawGrid = false;
+          }
+          tag.items = json;
+          tag.update();
+          createDataTable();
         });
+      }
     }
 
-  function createDataTable (data) {
-    // // Criar estrutura da tabela
-    tag.dataTable = $("#reporttable").DataTable( {
-        "data": + data,
-        "columns": [
-            {
-                "className":      'details-control',
-                "orderable":      false,
-                "data":           null,
-                "defaultContent": '',
-                "render": function () { return '<i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>'; },
-                width: "15px"
-            },
-                        { "data": "Id" },
-                        { "data": "Api" },
-                        { "data": "SessionToken" },
-                        { "data": "Client" },
-                        { "data": "System" },
-                        { "data": "User" },
-                        { "data": "Created" },
-                        { "data": "Closed" }
+    const customValidationPassed = () => {
+      let field = document.getElementById("inputStartDate");
+      let result = daysBetweenDates(tag.refs.inputStartDate.value, tag.refs.inputEndDate.value);
+      if (result < 0) {
+        field.setCustomValidity("Start Date must be prior to End Date.");
+        field.focus();
+        showError(field, field.validationMessage);
+        return false;
+      }
+      else {
+        if (result > 10) {
+          field.setCustomValidity("Maximum allowed search period is 10 days between the Created At and Closed At dates.");
+          field.focus();
+          showError(field, field.validationMessage);
+          return false;
+        }
+        else {
+          return true;
+        }
+      }
+    }
 
-        ],
-        "order": [[6, 'asc']]
-    } );
-  }
+    function createDataTable() {
+      // // Criar estrutura da tabela
+      tag.dataTable = $("#reporttable").DataTable();
+    }
 
-    onClickNavigate ( e ) {
-      var tr = e.currentTarget;
-      var row = tag.dataTable.row( tr );
-        // console.log('navigate');
-        // console.log('row');
-        // console.log(row);
-        // console.log('index');
-        // console.log(tag.dataTable.row( tr ).index());
-        // console.log('protocollist');
-        // console.log(sessionObj.protocols.protocollist);
-        sessionObj.protocols.protocolIndex = tag.dataTable.row( tr ).index();
-        saveSession();
-        path.navigate ("/protocol-details", path.parentDescription, "Protocol Details");
+    onClickNavigate(item) {
+      sessionObj.protocols.selectedProtocol = item;
+      saveSession();
+      path.navigate("/protocol-details", path.parentDescription, "Protocol Details");
     }
   </script>
 </report-protocols>

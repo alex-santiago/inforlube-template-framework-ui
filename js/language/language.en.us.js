@@ -15,33 +15,6 @@ var languageEnUs = {
       copyright: "Copyright @ Abis - 2017 | 2018 - All rights reserved"
   },
 
-  client: {
-      listClients: {
-        title: "Clients List",
-        name: "Name",
-        tradeName: "Trade Name"
-      },
-      listClientDetails: {
-        title: "Client Details",
-        id: "Id",
-        name: "Name",
-        tradeName: "Trade Name",
-        managerUrl: "Manager Url",
-        systems: "Systems",
-        systemId: "Id",
-        systemApi: "Api",
-        systemCode: "Code",
-        systemUrl: "Url",
-        systemConfiguration: "Configuration",
-        systemCountryId: "Country Id",
-        systemLegacyConfigurationId: "Legacy Configuration Id",
-        systemReturnImages: "Return Images",
-        systemImagesBasePath: "Images Base Path",
-        systemUseAlternativeViscosity: "Use Alternative Viscosity",
-        stores: "Stores"
-      }
-  },
-
   protocol: {
     reportProtocols: {
       title: 'Protocols Report',
@@ -91,7 +64,8 @@ var languageEnUs = {
       api: "Api",
       date: "Date",
       exceptionClassName: "Class",
-      exceptionMessage: "Menssage",
+      exceptionMessage: "Message",
+      exceptionDetailTitle: "Exception Details"
     }
   },
     navbar: {

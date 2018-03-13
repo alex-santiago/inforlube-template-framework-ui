@@ -1,0 +1,68 @@
+<report-exceptions-innerexception >
+  <yeld from="innerexception">
+  <div class="col-sm-12 col-md-12 col-lg-12">
+    <div class="card card-default mb-3">
+      <div class="card-header">InnerException</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+              <label>HResult:</label>
+              <p class="form-control-static"> { ( opts.hresult ? opts.hresult : "No Info")} </p>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+              <label>Source:</label>
+              <p class="form-control-static"> { ( opts.source ? opts.source : "No Info")} </p>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+              <label>Message:</label>
+              <p class="form-control-static"> { ( opts.message ? opts.message : "No Info")} </p>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+              <label>Data:</label>
+              <p class="form-control-static"> { ( opts.data ? opts.data : "No Info")} </p>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+              <label>Target Site:</label>
+              <p class="form-control-static"> { ( opts.targetsite ? opts.targetsite : "No Info")} </p>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+              <label>Help Link:</label>
+              <p class="form-control-static"> { ( opts.helplink ? opts.helplink : "No Info")} </p>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group">
+              <label>Stack Trace:</label>
+              <p class="form-control-static"> { ( opts.stacktrace ? opts.stacktrace : "No Info")} </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </yeld>
+  </div>
+
+  <!-- component javascript code -->
+  <script>
+
+    const tag = this;
+
+    this.on('mount', function() {
+    });
+
+    this.on('before-mount', function() {
+    });
+
+  </script>
+</report-exceptions-innerexception>

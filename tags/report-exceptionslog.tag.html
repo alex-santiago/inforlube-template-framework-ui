@@ -1,25 +1,25 @@
-<report-exceptionslog>
+<report-exceptionslog >
   <div class="card mb-3">
     <div class="card-header"><i class="fa fa-bug"></i> { language.exception.reportExceptionslog.title }</div>
     <div class="card-body">
-      <form id="search-form" role="form">
+      <form id="search-form" role="form" class="custom-validation">
         <div class="row mb-3">
           <div class="col-sm-12 col-md-12 col-lg-4">
             <div class="form-group">
-              <label>{ language.exception.reportExceptionslog.api }</label>
-              <input class="form-control" placeholder={ language.exception.reportExceptionslog.api } type="text" ref="inputApi">
+              <label for="inputApi">{ language.exception.reportExceptionslog.api }</label>
+              <input class="form-control" placeholder={ language.exception.reportExceptionslog.api } type="text" id="inputApi" ref="inputApi">
             </div>
           </div>
           <div class="col-sm-6 col-md-6 col-lg-4">
             <div class="form-group">
-              <label>{ language.exception.reportExceptionslog.startDate }</label>
-              <input class="form-control" placeholder={ language.exception.reportExceptionslog.startDate } type="datetime-local" ref="inputStartDate">
+              <label for="inputStartDate">{ language.exception.reportExceptionslog.startDate }</label>
+              <input class="form-control" required placeholder={ language.exception.reportExceptionslog.startDate } type="datetime-local" id="inputStartDate" ref="inputStartDate">
             </div>
           </div>
           <div class="col-sm-6 col-md-6 col-lg-4">
             <div class="form-group">
-              <label>{ language.exception.reportExceptionslog.endDate }</label>
-              <input class="form-control" placeholder={ language.exception.reportExceptionslog.endDate } type="datetime-local"  ref="inputEndDate">
+              <label for="inputEndDate">{ language.exception.reportExceptionslog.endDate }</label>
+              <input class="form-control" required placeholder={ language.exception.reportExceptionslog.endDate } type="datetime-local" id="inputEndDate" ref="inputEndDate">
             </div>
           </div>
           <div class="col-lg-12">
@@ -29,33 +29,20 @@
           </div>
         </div>
       </form>
-      <div class="col-lg-12">
+      <div class="col-lg-12" if={drawGrid} >
         <table class="dataTable table table-bordered table-striped" id="reporttable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th></th>
               <th>{ language.exception.reportExceptionslog.date }</th>
               <th>{ language.exception.reportExceptionslog.api }</th>
-              <th>{ language.exception.reportExceptionslog.exceptionClassName }</th>
               <td>{ language.exception.reportExceptionslog.exceptionMessage }</td>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th></th>
-              <th>{ language.exception.reportExceptionslog.date }</th>
-              <th>{ language.exception.reportExceptionslog.api }</th>
-              <th>{ language.exception.reportExceptionslog.exceptionClassName }</th>
-              <td>{ language.exception.reportExceptionslog.exceptionMessage }</td>
-            </tr>
-          </tfoot>
           <tbody>
-            <tr each={item in this.items} onclick={ onExpandClick }>
-              <td></td>
-              <td>{ item.Date }</td>
-              <td>{ item.Api }</td>
-              <td>{ ( item.Exception == null ? "" : item.Exception.ClassName ) }</td>
-              <td>{ ( item.Exception == null ? "" : item.Exception.Message ) }</td>
+            <tr each={item in sessionObj.exceptions.exceptionList} onclick={()=>onClickNavigate(item) }>
+              <td>{ moment(item.date).format('DD/MM/YYYY HH:mm:ss') }</td>
+              <td>{ item.api }</td>
+              <td>{ ( item.exception ? formatContent(item.exception.message, 0) : "No info" ) }</td>
             </tr>
           </tbody>
         </table>
@@ -67,15 +54,27 @@
   <script>
 
     const tag = this;
-
-    tag.tableUpdated = false;
+    tag.drawGrid = false;
 
     this.on('mount', function() {
       var tomorrow = new Date(new Date().setDate(new Date().getDate()+1));
-      // tag.refs.inputStartDate.value = new Date().toISOString().slice(0, 10)+'T00:00:00';
-      tag.refs.inputStartDate.value = '2018-02-11T00:00:00';
+      tag.refs.inputStartDate.value = new Date().toISOString().slice(0, 10)+'T00:00:00';
       tag.refs.inputEndDate.value = tomorrow.toISOString().slice(0, 10)+'T00:00:00';
       tag.refs.inputApi.value = "";
+      // tag.refs.inputStartDate.value = '2018-02-27T19:00:00';
+      // tag.refs.inputEndDate.value = '2018-02-28T00:00:00';
+
+      if (sessionObj.exceptions.exceptionList != null && sessionObj.exceptions.exceptionList.length > 0) {
+        tag.drawGrid = true;
+        tag.update();
+        createDataTable();
+      }
+      else {
+        tag.drawGrid = false;
+        tag.update();
+      }
+      // Remove browsers default Form validation
+      nativeFormValidationOff();
     });
 
     this.on('before-mount', function() {
@@ -83,181 +82,65 @@
 
     // Evento Search button
     onButtonSearchClick(e){
-        if(tag.dataTable)
-            tag.dataTable.destroy();
+      var parameters = {};
+      parameters.api = tag.refs.inputApi.value;
+      parameters.startDate = tag.refs.inputStartDate.value;
+      parameters.endDate = tag.refs.inputEndDate.value;
 
-        var parameters = {};
-        parameters.api = tag.refs.inputApi.value;
-        parameters.startDate = tag.refs.inputStartDate.value;
-        parameters.endDate = tag.refs.inputEndDate.value;
+      // console.log(parameters);
+      // updateMessage("test 1", "inputApi");
 
-        // console.log(parameters);
-
+      // Call the form validation and passes a custom function to validate other fields
+      if (formValidationPassed(customValidationPassed)) {
         inforlub.controllers.exceptionslog.getlogs(parameters, function(json){
-            tag.items = json;
-            console.log(json);
-            tag.update();
-            // Criar estrutura da tabela
-            tag.dataTable = $("#reporttable").DataTable( {
-                "data": + json,
-                "columns": [
-                    {
-                        "className":      'details-control',
-                        "orderable":      false,
-                        "data":           null,
-                        "defaultContent": '',
-                        "render": function iconDetailsControl() {
-                          return '<i class="fa fa-plus-square" aria-hidden="true"></i>';
-                        },
-                        width: "15px"
-                    },
-                    { "data": "Date" },
-                    { "data": "Api" },
-                    { "data": "ClassName" },
-                    { "data": "Message" }
-                ],
-                "order": [[1, 'asc']]
-            } );
+          sessionObj.exceptions.exceptionList = json;
+          saveSession();
+
+          if (sessionObj.exceptions.exceptionList != null && sessionObj.exceptions.exceptionList.length > 0) {
+            tag.drawGrid = true;
+          }
+          else {
+            tag.drawGrid = false;
+          }
+          tag.items = json;
+          tag.update();
+          createDataTable();
         });
+      }
+      else {
+        // prevents form submission
+        e.preventDefault();
+      }
     }
 
-    // Evento para expandir linha da tabela
-    onExpandClick ( e ) {
-        var tr = e.currentTarget;
-        var row = tag.dataTable.row( tr );
-        var tdi = $(tr).closest('tr').find("i.fa");
-        if ( row.child.isShown() ) {
-            // This row is already open - close it
-            row.child.hide();
-            $(this).closest('tr').removeClass('shown');
-            tdi.first().removeClass('fa-minus-square');
-            tdi.first().addClass('fa-plus-square');
-        }
-        else {
-            // Open this row
-            row.child( format(e.item) ).show();
-            $(this).closest('tr').addClass('shown');
-            tdi.first().removeClass('fa-plus-square');
-            tdi.first().addClass('fa-minus-square');
-        }
+    const customValidationPassed = () => {
+      let field = document.getElementById("inputStartDate");
+      let result = daysBetweenDates(tag.refs.inputStartDate.value, tag.refs.inputEndDate.value);
+      if (result < 0) {
+        field.setCustomValidity("Start Date must be prior to End Date.");
+        field.focus();
+        showError(field, field.validationMessage);
+        return false;
+      }
+      else {
+        return true;
+      }
     }
 
-    function resolveException ( ex ) {
-        let tableHead = '';
-        let body = '';
-        let tableFooter = ''
-        // console.log('resolve call ini');
-        // console.log('var table ini');
-        // console.log(tableHead);
-        // console.log(body);
-        // console.log(tableFooter);
-
-        if ( ex.InnerException === undefined || ex.InnerException == null ) {
-            // console.log('ex.InnerException');
-            // console.log(ex.InnerException);
-            tableHead = '<div class="form-group">';
-            body = '<label>No data returned</label>';
-            tableFooter = '</div>';
-        }
-        else {
-            // console.log('ex.InnerException');
-            // console.log(ex.InnerException);
-
-            tableHead = '<div class="form-group">'+
-                            '<label>ClassName:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.ClassName ? ex.InnerException.ClassName : "No Info")) +'</p>'+
-
-                            '<label>Message:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.Message ? ex.InnerException.Message : "No Info")) +'</p>'+
-
-                            '<label>Data:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.Data ? ex.InnerException.Data : "No Info")) +'</p>'+
-
-                            '<label>HResult:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.HResult ? ex.InnerException.HResult : "No Info")) +'</p>'+
-
-                            '<label>StackTraceString:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.StackTraceString ? ex.InnerException.StackTraceString : "No Info")) +'</p>'+
-
-                            '<label>HelpURL:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.HelpURL ? ex.InnerException.HelpURL : "No Info")) +'</p>'+
-
-                            '<label>InnerException:</label>'+
-                            '<p class="form-control-static">';
-
-            tableFooter = '</p>'+
-
-                            '<label>RemoteStackIndex:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.RemoteStackIndex ? ex.InnerException.RemoteStackIndex : "No Info")) +'</p>'+
-
-                            '<label>RemoteStackTraceString:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.RemoteStackTraceString ? ex.InnerException.RemoteStackTraceString : "No Info")) +'</p>'+
-
-                            '<label>Source:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.Source ? ex.InnerException.Source : "No Info")) +'</p>'+
-
-                            '<label>WatsonBuckets:</label>'+
-                            '<p class="form-control-static">'+ JSON.stringify( ( ex.InnerException.WatsonBuckets ? ex.InnerException.WatsonBuckets : "No Info")) +'</p>'+
-            '</div>';
-
-            body = resolveException(ex.InnerException);
-        }
-        // console.log('resolve call end');
-        // console.log('var table end');
-        // console.log(body);
-        return tableHead + body + tableFooter;
+    formatContent (text, maxSize) {
+      return formatLargeString(text, maxSize);
     }
 
-    // criar linha de detalhes
-    function format ( d ) {
-        // console.log('format call');
-        // console.log( ( d.item.Exception.InnerE ? Exception.InnerE .xxx : "No Info")xception);
+    function createDataTable() {
+      // // Criar estrutura da tabela
+      tag.dataTable = $("#reporttable").DataTable( );
+      // tag.dataTable.draw();
+    }
 
-        if ( d.item.Exception === undefined || d.item.Exception == null ) {
-            return '<div class="form-group"> <label>No data returned for the exception.</label></div>';
-        }
-        else {
-          return '<table cellpadding="2" cellspacing="0" border="0" style="padding-left:5%;">'+
-
-              '<tr>'+
-                  '<td class="detail-label"><label>Data:</label></td>'+
-                  '<td>'+JSON.stringify( ( d.item.Exception.Data ? d.item.Exception.Data : "No Info"))+'</td>'+
-              '</tr>'+
-              '<tr>'+
-                  '<td class="detail-label"><label>HResult:</label></td>'+
-                  '<td>'+JSON.stringify( ( d.item.Exception.HResult ? d.item.Exception.HResult : "No Info"))+'</td>'+
-              '</tr>'+
-              '<tr>'+
-                  '<td class="detail-label"><label>StackTraceString:</label></td>'+
-                  '<td>'+JSON.stringify( ( d.item.Exception.StackTraceString ? d.item.Exception.StackTraceString : "No Info"))+'</td>'+
-              '</tr>'+
-              '<tr>'+
-                  '<td class="detail-label"><label>HelpURL:</label></td>'+
-                  '<td>'+JSON.stringify( ( d.item.Exception.HelpURL ? d.item.Exception.HelpURL : "No Info"))+'</td>'+
-              '</tr>'+
-              '<tr>'+
-                  '<td class="detail-label"><label>InnerException:</label></td>'+
-                  '<td>'+resolveException(d.item.Exception)+'</td>'+
-              '</tr>'+
-              '<tr>'+
-                  '<td class="detail-label"><label>RemoteStackIndex:</label></td>'+
-                  '<td>'+JSON.stringify( ( d.item.Exception.RemoteStackIndex ? d.item.Exception.RemoteStackIndex : "No Info"))+'</td>'+
-              '</tr>'+
-              '<tr>'+
-                  '<td class="detail-label"><label>RemoteStackTraceString:</label></td>'+
-                  '<td>'+JSON.stringify( ( d.item.Exception.RemoteStackTraceString ? d.item.Exception.RemoteStackTraceString : "No Info"))+'</td>'+
-              '</tr>'+
-              '<tr>'+
-                  '<td class="detail-label"><label>Source:</label></td>'+
-                  '<td>'+JSON.stringify( ( d.item.Exception.Source ? d.item.Exception.source : "No Info"))+'</td>'+
-              '</tr>'+
-              '<tr>'+
-                  '<td class="detail-label"><label>WatsonBuckets:</label></td>'+
-                  '<td>'+JSON.stringify( ( d.item.Exception.WatsonBuckets ? d.item.Exception.WatsonBuckets : "No Info"))+'</td>'+
-              '</tr>'+
-
-          '</table>';
-        }
+    onClickNavigate(item) {
+      sessionObj.exceptions.selectedException = item;
+      saveSession();
+      path.navigate("/report-exceptions-details", path.parentDescription, "Exception Details");
     }
 
   </script>

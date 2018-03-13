@@ -13,9 +13,14 @@ const path = new Object;
 path.current = "/";
 path.parentDescription = "Home";
 path.childDescription = "";
+path.navigatedFromMenu = false;
 
 // resets path variables and return to site Home
 path.navigateHome = function () {
+  if (path.navigatedFromMenu) {
+    clearSession();
+    path.navigatedFromMenu = false;
+  }
   path.current = "/";
   path.parentDescription = "Home";
   path.childDescription = "";
@@ -25,6 +30,10 @@ path.navigateHome = function () {
 
 // navigates to an specific destination
 path.navigate = function (destination, parentDescription, childDescription) {
+  if (path.navigatedFromMenu) {
+    clearSession();
+    path.navigatedFromMenu = false;
+  }
   path.current = destination;
   path.parentDescription = parentDescription;
   path.childDescription = childDescription;

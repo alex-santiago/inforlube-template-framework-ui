@@ -49,6 +49,15 @@ table.dataTable tr:hover, table.table tr:hover {
 }
 
 /*--------------------------------------------------------------
+# COLOR OVERRIDES FOR FORM CONTROLS
+--------------------------------------------------------------*/
+.form-control:focus {
+  background-color: #e9ecef;
+  border-color: #ffc107;
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+}
+
+/*--------------------------------------------------------------
 # COLOR OVERRIDES FOR BTN AND Links
 --------------------------------------------------------------*/
 .btn-primary {
@@ -119,6 +128,25 @@ a:hover {
   color: #23272b;
   background-color: #fff;
   border-color: #1d2124;
+}
+
+/*--------------------------------------------------------------
+# ERROR MESSAGES AND STYLES
+--------------------------------------------------------------*/
+.error .form-control:focus {
+  background-color: #e9ecef;
+  border-color: #a94442;
+  box-shadow: 0 0 0 0.2rem rgba(111, 8, 8, 0.5);
+}
+
+.error {
+  color: #a94442;
+  border-color: #a94442;
+}
+
+.error-message {
+  color: #a94442;
+  font-style: italic;
 }
 
 /*--------------------------------------------------------------

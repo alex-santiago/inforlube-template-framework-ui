@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="form-group">
-              <button class="btn btn-primary" onclick={onClickNavigate}><i class="fa fa-arrow-left"></i> { language.globals.back }</button>
+              <button type="button" class="btn btn-primary" onclick={onClickNavigate}><i class="fa fa-arrow-left"></i> { language.globals.back }</button>
             </div>
           </div>
           <div class="col-lg-12">
@@ -14,52 +14,58 @@
               <div class="card-header">{ language.protocol.protocolDetails.titleProtocol }</div>
               <div class="card-body">
                 <div class="row">
-                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                      <label>Session Token</label>
+                      <p class="form-control-static">{ item.sessionToken }</p>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="form-group">
                       <label>{ language.protocol.reportProtocols.id }</label>
-                      <p class="form-control-static">{ item.Id }</p>
+                      <p class="form-control-static">{ item.id }</p>
                     </div>
                   </div>
-                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="form-group">
                       <label>{ language.protocol.reportProtocols.api}</label>
-                      <p class="form-control-static">{ item.Api }</p>
+                      <p class="form-control-static">{ item.api }</p>
                     </div>
                   </div>
-                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="form-group">
                       <label>{ language.protocol.reportProtocols.clientId }</label>
-                      <p class="form-control-static">{ ( item.Client ? item.Client.Id : "No info" ) }</p>
+                      <p class="form-control-static">{ ( item.client ? ( item.client.id ? item.client.id : "No info" ) : "No info" ) }</p>
                     </div>
                   </div>
-                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="form-group">
                       <label>{ language.protocol.reportProtocols.clientName }</label>
-                      <p class="form-control-static">{ ( item.Client ? item.Client.Name : "No info" ) }</p>
+                      <p class="form-control-static">{ ( item.client ? ( item.client.name ? item.client.name : "No info" ) : "No info" ) }</p>
                     </div>
                   </div>
                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="form-group">
                       <label>{ language.protocol.reportProtocols.systemId }</label>
-                      <p class="form-control-static">{ ( item.System ? item.System.Id : "No info" ) }</p>
+                      <p class="form-control-static">{ ( item.system ? ( item.system.id ? item.system.id : "No info" ) : "No info" ) }</p>
                     </div>
                   </div>
                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="form-group">
                       <label>{ language.protocol.reportProtocols.systemName }</label>
-                      <p class="form-control-static">{ ( item.System ? item.System.Name : "No info" ) }</p>
+                      <p class="form-control-static">{ ( item.system ? ( item.system.name ? item.system.name : "No info" ) : "No info" ) }</p>
                     </div>
                   </div>
                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="form-group">
                       <label>{ language.protocol.reportProtocols.createdAtDate }</label>
-                      <p class="form-control-static">{ item.CreatedAt }</p>
+                      <p class="form-control-static">{ moment(item.createdAt).format('DD/MM/YYYY HH:mm:ss') }</p>
                     </div>
                   </div>
                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="form-group">
                       <label>{ language.protocol.reportProtocols.closedAtDate }</label>
-                      <p class="form-control-static">{ item.ClosedAt }</p>
+                      <p class="form-control-static">{ moment(item.closedAt).format('DD/MM/YYYY HH:mm:ss') }</p>
                     </div>
                   </div>
                 </div>
@@ -74,25 +80,25 @@
                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="form-group">
                       <label>{ language.protocol.reportProtocols.userId }</label>
-                      <p class="form-control-static">{ ( item.User ? item.User.Id : "No info" ) }</p>
+                      <p class="form-control-static">{ ( item.user ? ( item.user.id ? item.user.id : "No info" ) : "No info" ) }</p>
                     </div>
                   </div>
                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="form-group">
                       <label>{ language.protocol.reportProtocols.userName }</label>
-                      <p class="form-control-static">{ ( item.User ? item.User.Name : "No info" ) }</p>
+                      <p class="form-control-static">{ ( item.user ? ( item.user.name ? item.user.name : "No info" ) : "No info" ) }</p>
                     </div>
                   </div>
                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="form-group">
                       <label>{ language.protocol.reportProtocols.accountId }</label>
-                      <p class="form-control-static">{ ( item.User ? item.User.AccountId : "No info" ) }</p>
+                      <p class="form-control-static">{ ( item.user ? ( item.user.accountId ? item.user.accountId : "No info" ) : "No info" ) }</p>
                     </div>
                   </div>
                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="form-group">
                       <label>{ language.protocol.reportProtocols.email }</label>
-                      <p class="form-control-static">{ ( item.User ? item.User.Email : "No info" ) }</p>
+                      <p class="form-control-static">{ ( item.user ? ( item.user.email ? item.user.email : "No info" ) : "No info" ) }</p>
                     </div>
                   </div>
                 </div>
@@ -107,37 +113,67 @@
                   <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
                     <div class="form-group">
                       <label>{ language.protocol.reportProtocols.detailsYear }</label>
-                      <p class="form-control-static">{ item.Year }</p>
+                      <p class="form-control-static">{ item.year }</p>
                     </div>
                   </div>
                   <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
                     <div class="form-group">
                       <label>{ language.protocol.reportProtocols.detailsBrandId }</label>
-                      <p class="form-control-static">{ item.BrandId }</p>
+                      <p class="form-control-static">{ ( item.brand ? ( item.brand.id ? item.brand.id : "No info" ) : "No info" ) }</p>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                    <div class="form-group">
+                      <label>Brand Name</label>
+                      <p class="form-control-static">{ ( item.brand ? ( item.brand.name ? item.brand.name : "No info" ) : "No info" ) }</p>
                     </div>
                   </div>
                   <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
                     <div class="form-group">
                       <label>{ language.protocol.reportProtocols.detailsModelId }</label>
-                      <p class="form-control-static">{ item.ModelId }</p>
+                      <p class="form-control-static">{ ( item.model ? ( item.model.id ? item.model.id : "No info" ) : "No info" ) }}</p>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                    <div class="form-group">
+                      <label>Model Name</label>
+                      <p class="form-control-static">{ ( item.model ? ( item.model.name ? item.model.name : "No info" ) : "No info" ) }</p>
                     </div>
                   </div>
                   <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
                     <div class="form-group">
                       <label>{ language.protocol.reportProtocols.detailsFuelId }</label>
-                      <p class="form-control-static">{ item.FuelId }</p>
+                      <p class="form-control-static">{ ( item.fuel ? ( item.fuel.id ? item.fuel.id : "No info" ) : "No info" ) }</p>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                    <div class="form-group">
+                      <label>Fuel Name</label>
+                      <p class="form-control-static">{ ( item.fuel ? ( item.fuel.name ? item.fuel.name : "No info" ) : "No info" ) }</p>
                     </div>
                   </div>
                   <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
                     <div class="form-group">
                       <label>{ language.protocol.reportProtocols.detailsEngineId }</label>
-                      <p class="form-control-static">{ item.EngineId }</p>
+                      <p class="form-control-static">{ ( item.engine ? ( item.engine.id ? item.engine.id : "No info" ) : "No info" ) }</p>
                     </div>
                   </div>
                   <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
                     <div class="form-group">
-                      <label>{ language.protocol.reportProtocols.detailsVehicleTypeId }</label>
-                      <p class="form-control-static">{ item.VehicleTypeId }</p>
+                      <label>Engine Name</label>
+                      <p class="form-control-static">{ ( item.engine ? ( item.engine.name ? item.engine.name : "No info" ) : "No info" ) }</p>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                    <div class="form-group">
+                      <label>Model Vehicle Type Id</label>
+                      <p class="form-control-static">{ ( item.modelVehicleType ? ( item.modelVehicleType.id ? item.modelVehicleType.id : "No info" ) : "No info" ) }</p>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                    <div class="form-group">
+                      <label>Model Vehicle Name</label>
+                      <p class="form-control-static">{ ( item.modelVehicleType ? ( item.modelVehicleType.name ? item.modelVehicleType.name : "No info" ) : "No info" ) }</p>
                     </div>
                   </div>
                 </div>
@@ -189,7 +225,9 @@
 
     const tag = this;
     loadSession();
-    tag.item = sessionObj.protocols.protocollist[sessionObj.protocols.protocolIndex];
+    // console.log('protocol');
+    // console.log(sessionObj.protocols.selectedProtocol);
+    tag.item = sessionObj.protocols.selectedProtocol;
     tag.requests = tag.item.Requests;
     // console.log('item');
     // console.log(tag.item);
@@ -225,7 +263,7 @@
     });
 
     onClickNavigate () {
-      sessionObj.protocols.protocolIndex = -1;
+      sessionObj.protocols.selectedProtocol = null;
       saveSession();
       path.navigate("/report-protocols", path.parentDescription, "Protocols");
     }
@@ -267,31 +305,31 @@
                   '<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">'+
                     '<div class="form-group">'+
                       '<label>Method</label>'+
-                      '<p class="form-control-static">'+ JSON.stringify(( det.request.Method ? det.request.Method : "No Info")) +'</p>'+
+                      '<p class="form-control-static">'+ JSON.stringify(( det.request.method ? det.request.method : "No Info")) +'</p>'+
                     '</div>'+
                   '</div>'+
                   '<div class="col-xs-6 col-sm-6 col-md-6 col-lg-8">'+
                     '<div class="form-group">'+
                       '<label>Headers</label>'+
-                      '<p class="form-control-static">'+ JSON.stringify(( det.request.Headers ? det.request.Headers : "No Info")) +'</p>'+
+                      '<p class="form-control-static">'+ JSON.stringify(( det.request.headers ? det.request.headers : "No Info")) +'</p>'+
                     '</div>'+
                   '</div>'+
                   '<div class="col-xs-6 col-sm-6 col-md-3 col-lg-4">'+
                     '<div class="form-group">'+
                       '<label>Controller</label>'+
-                      '<p class="form-control-static">'+ JSON.stringify(( det.request.Controller ? det.request.Controller : "No Info")) +'</p>'+
+                      '<p class="form-control-static">'+ JSON.stringify(( det.request.controller ? det.request.controller : "No Info")) +'</p>'+
                     '</div>'+
                   '</div>'+
                   '<div class="col-xs-6 col-sm-6 col-md-3 col-lg-4">'+
                     '<div class="form-group">'+
                       '<label>Action</label>'+
-                      '<p class="form-control-static">'+ JSON.stringify(( det.request.Action ? det.request.Action : "No Info")) +'</p>'+
+                      '<p class="form-control-static">'+ JSON.stringify(( det.request.action ? det.request.action : "No Info")) +'</p>'+
                     '</div>'+
                   '</div>'+
                   '<div class="col-xs-6 col-sm-6 col-md-3 col-lg-4">'+
                     '<div class="form-group">'+
                       '<label>Error</label>'+
-                      '<p class="form-control-static">'+ JSON.stringify(( det.request.WithError ? det.request.WithError : "No Info")) +'</p>'+
+                      '<p class="form-control-static">'+ JSON.stringify(( det.request.withError ? det.request.withError : "No Info")) +'</p>'+
                     '</div>'+
                   '</div>'+
                 '</div>'+
@@ -300,13 +338,13 @@
                   '<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">'+
                     '<div class="form-group">'+
                       '<label>Status</label>'+
-                      '<p class="form-control-static">'+ JSON.stringify(( det.request.Response ? det.request.Response.Status : "No Info")) +'</p>'+
+                      '<p class="form-control-static">'+ JSON.stringify(( det.request.response ? det.request.response.status : "No Info")) +'</p>'+
                     '</div>'+
                   '</div>'+
                   '<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">'+
                     '<div class="form-group">'+
                       '<label>Content</label>'+
-                      '<p class="form-control-static">'+ JSON.stringify(( det.request.Response ? det.request.Response.Content : "No Info")) +'</p>'+
+                      '<p class="form-control-static">'+ JSON.stringify(( det.request.response ? det.request.response.content : "No Info")) +'</p>'+
                     '</div>'+
                   '</div>'+
                 '</div>'+
