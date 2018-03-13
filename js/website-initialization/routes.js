@@ -15,6 +15,10 @@ routes.init = function () {
   	riot.mount('#mainContentBody', 'report-exceptionslog');
   }, 'Report ExceptionsLog');
 
+  route('/report-exceptions-details', function () {
+  	riot.mount('#mainContentBody', 'report-exceptions-details');
+  }, 'Report ExceptionsLog Details');
+
   route('/report-protocols', function () {
     riot.mount('#mainContentBody', 'report-protocols');
   }, 'Report Protocols');

@@ -32,6 +32,7 @@
 
     clickBrand ( e ) {
         e.preventDefault();
+        path.navigatedFromMenu = true;
         path.navigateHome();
         e.stopPropagation();
     }

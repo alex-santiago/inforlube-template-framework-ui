@@ -49,6 +49,19 @@ table.dataTable tr:hover, table.table tr:hover {
 }
 
 /*--------------------------------------------------------------
+# COLOR OVERRIDES FOR CARDS
+--------------------------------------------------------------*/
+div.card-main {
+  border: 1px solid #343a40;
+}
+
+div.card-header {
+  color: #ffc107;
+  background-color: #343a40;
+  border-bottom: 1px solid rgba(52, 58, 64, 0.5);
+}
+
+/*--------------------------------------------------------------
 # COLOR OVERRIDES FOR FORM CONTROLS
 --------------------------------------------------------------*/
 .form-control:focus {

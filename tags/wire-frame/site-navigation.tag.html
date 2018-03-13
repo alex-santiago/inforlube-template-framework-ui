@@ -45,6 +45,7 @@
         // console.log(e.item.item.route);
         e.preventDefault();
         if (e.item.item.route != "#") {
+          path.navigatedFromMenu = true;
           path.navigate(e.item.item.route, e.item.item.description, "");
           e.stopPropagation();
         }
@@ -59,6 +60,7 @@
         // console.log(e.item.child.description);
         // console.log(e.item.child.route);
         e.preventDefault();
+        path.navigatedFromMenu = true;
         path.navigate(e.item.child.route, e.item.child.parent, e.item.child.description);
         e.stopPropagation();
       }
