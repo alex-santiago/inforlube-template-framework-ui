@@ -1,0 +1,76 @@
+<dashboard>
+  <div class="card card-main mb-3">
+    <div class="card-header"><i class="fa fa-dashboard"></i> Dashboard</div>
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header"><i class="fa fa-line-chart"></i> Indicadores</div>
+            <div class="card-body">
+              <div class="row">
+                <virtual each={systemIndicator in this.systemIndicators}>
+                  <div class="col-xl-4 col-lg-6 col-md-8 col-sm-12">
+                    <indicator
+                      id={systemIndicator.id}
+                      ico={systemIndicator.ico}
+                      title={systemIndicator.title}
+                      description={systemIndicator.description}
+                      route={systemIndicator.route}
+                      visible={systemIndicator.visibility.visible}
+                      titleVisible={systemIndicator.visibility.titleVisible}
+                      lowerThreshold={systemIndicator.thresholds.lowerThreshold}
+                      middleThreshold={systemIndicator.thresholds.middleThreshold}
+                      upperThreshold={systemIndicator.thresholds.upperThreshold}
+                    ></indicator>
+                  </div>
+                </virtual>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header"><i class="fa fa-area-chart"></i> Gráficos</div>
+            <div class="card-body">
+              <div class="row">
+              <!-- <virtual> -->
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                  <area-graph></area-graph>
+                </div>
+              <!-- </virtual> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- component javascript code -->
+  <script>
+  const systemIndicators = ` [
+    { "id": "indicator1", "ico": "fa-cloud-download", "title" : "Consultas", "description": "Consultas no mês", "route": "#",
+      "visibility" : { "visible" : true, "titleVisible" : true },
+      "thresholds" : { "lower" : 0, "middle" : 0, "upper" : 0 } },
+    { "id": "indicator2", "ico": "fa-users", "title" : "Logados", "description": "Usuários Logados", "route": "#",
+      "visibility" : { "visible" : true, "titleVisible" : true },
+      "thresholds" : { "lower" : 0, "middle" : 0, "upper" : 0 } },
+    { "id": "indicator3", "ico": "fa-lock", "title" : "Bloqueios", "description": "Usuários Bloqueados", "route": "#",
+      "visibility" : { "visible" : true, "titleVisible" : true },
+      "thresholds" : { "lower" : 0, "middle" : 0, "upper" : 0 } }
+  ] `;
+
+    const tag = this;
+    tag.systemIndicators = JSON.parse(systemIndicators);
+
+    this.on('mount', function() {
+      console.log(tag.systemIndicators);
+    });
+
+    this.on('before-mount', function() {
+    });
+
+  </script>
+</dashboard>

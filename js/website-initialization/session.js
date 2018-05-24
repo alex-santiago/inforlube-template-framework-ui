@@ -14,6 +14,7 @@ var saveSession = function(){
 
 var clearSession = function(){
     sessionObj = new Object();
+    sessionObj.error = new Object();
     sessionObj.protocols = new Object();
     sessionObj.exceptions = new Object();
 

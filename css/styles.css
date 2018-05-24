@@ -40,12 +40,29 @@ body {
   margin-bottom: 0;
 }
 
+.form-group label.read-only {
+  display: block;
+  font-weight: 400;
+}
+
 body.sidenav-toggled site-navigation .fa {
   color: #ffc107;
 }
 
 table.dataTable tr:hover, table.table tr:hover {
   cursor: pointer;
+}
+
+textarea.eula {
+  min-height: 300px;
+}
+
+/*--------------------------------------------------------------
+# FONT OVERRIDE FOR ALERT MESSAGES
+--------------------------------------------------------------*/
+.close {
+  font-size: 1rem;
+  line-height: inherit;
 }
 
 /*--------------------------------------------------------------
@@ -62,12 +79,75 @@ div.card-header {
 }
 
 /*--------------------------------------------------------------
+# CLASSES FOR THE INDICATOR COMPONENTS
+--------------------------------------------------------------*/
+.card-indicator {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.card-indicator > .list-group:first-child .list-group-item:first-child {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.card-indicator > .list-group:last-child .list-group-item:last-child {
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.card-indicator-title {
+  font-size: 1.75rem;
+  padding: 0.75rem 1.25rem;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-indicator-title:last-child {
+  border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
+}
+
+.card-header-indicator {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.huge {
+  font-size: 2.5rem;
+}
+
+/*--------------------------------------------------------------
 # COLOR OVERRIDES FOR FORM CONTROLS
 --------------------------------------------------------------*/
 .form-control:focus {
   background-color: #e9ecef;
   border-color: #ffc107;
   box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+}
+
+/*--------------------------------------------------------------
+# COLOR FOR BTN for actions (New, Save, Delete)
+--------------------------------------------------------------*/
+.form-group-toolbar .btn-primary {
+  color: #ffc107;
+}
+
+.form-group-toolbar .btn-primary:hover {
+  color: #ffc107;
 }
 
 /*--------------------------------------------------------------

@@ -1,0 +1,54 @@
+<indicator>
+  <div class="card-indicator bg-danger text-white mb-3" if={opts.visible}>
+    <div class="card-indicator-title text-white" if={opts.titlevisible}>{opts.title}</div>
+    <div class="card-header-indicator">
+      <div class="row">
+          <div class="col-3">
+            <i class="fa {opts.ico} fa-5x"></i>
+          </div>
+          <div class="col-9 text-right">
+            <div class="huge">13</div>
+            <div>{opts.description}</div>
+          </div>
+      </div>
+    </div>
+    <a href="#">
+      <div class="card-footer text-white">
+        <span class="pull-left">View Details</span>
+        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+        <div class="clearfix"></div>
+      </div>
+    </a>
+  </div>
+
+  <!-- component javascript code -->
+  <script>
+    const tag = this;
+
+    this.on('mount', function() {
+      tag.value = 59;
+      tag.update();
+    });
+
+    this.on('before-mount', function() {
+      console.log('before');
+      console.log(opts);
+    });
+
+    evaluateIndicator () {
+      if (tag.value <= opts.lowerThreshold) {
+        return "bg-success";
+      }
+      else {
+        if (tag.value <= opts.middleThreshold) {
+          return "bg-warning";
+        }
+        else {
+          return "bg-danger";
+        }
+      }
+
+    };
+
+  </script>
+</indicator>

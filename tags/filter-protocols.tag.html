@@ -1,0 +1,119 @@
+<filter-protocols>
+  <form id="search-form" role="form" class="custom-validation">
+    <div class="row">
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>{ language.protocol.reportProtocols.clientName }</label>
+          <input class="form-control" placeholder={ language.protocol.reportProtocols.clientName } type="text" id="inputClientName" ref="inputClientName">
+        </div>
+        <div class="form-group">
+          <label>{ language.protocol.reportProtocols.systemName }</label>
+          <input class="form-control" placeholder={ language.protocol.reportProtocols.systemName } type="text" id="inputSystemName" ref="inputSystemName">
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>{ language.protocol.reportProtocols.api }</label>
+          <input class="form-control" placeholder={ language.protocol.reportProtocols.api } type="text" id="inputApi" ref="inputApi">
+        </div>
+        <div class="form-group">
+          <label>{ language.protocol.reportProtocols.userName }</label>
+          <input class="form-control" placeholder={ language.protocol.reportProtocols.userName } type="text" id="inputUserName" ref="inputUserName">
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>{ language.protocol.reportProtocols.createdAtDate }</label>
+          <input class="form-control" placeholder={ language.protocol.reportProtocols.createdAtDate } type="datetime-local" required id="inputStartDate" ref="inputStartDate">
+        </div>
+        <div class="form-group">
+          <label>{ language.protocol.reportProtocols.closedAtDate }</label>
+          <input class="form-control" placeholder={ language.protocol.reportProtocols.closedAtDate } type="datetime-local" required id="inputEndDate" ref="inputEndDate">
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label>{ language.protocol.reportProtocols.closed }</label>
+          <label class="label-switch switch-warning">
+            <input type="checkbox" class="switch-square switch-bootstrap" id="inputClosed" ref="inputClosed">
+            <span class="lable"></span>
+          </label>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="form-group">
+          <button class="btn btn-primary" onclick={onButtonSearchClick}>
+            <i class="fa fa-search"></i> { language.globals.search }</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- component javascript code -->
+  <script>
+
+    const tag = this;
+    tag.drawGrid = false;
+
+    this.on('mount', function () {
+      var tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
+      tag.refs.inputStartDate.value = new Date().toISOString().slice(0, 10) + 'T00:00:00';
+      tag.refs.inputEndDate.value = tomorrow.toISOString().slice(0, 10) + 'T00:00:00';
+      tag.refs.inputApi.value = '';
+      // tag.refs.inputStartDate.value = '2018-03-17T00:00:00'
+      // tag.refs.inputEndDate.value = '2018-03-20T00:00:00'
+      tag.refs.inputClientName.value = "";
+      tag.refs.inputSystemName.value = "";
+      tag.refs.inputUserName.value = "";
+      tag.refs.inputClosed.checked = true;
+
+      // Remove browsers default Form validation
+      nativeFormValidationOff();
+    });
+
+    this.on('before-mount', function () {
+    });
+
+    // Evento Search button
+    onButtonSearchClick(e){
+      var parameters = {};
+      parameters.Api = tag.refs.inputApi.value;
+      parameters.CreatedAtStartDate = tag.refs.inputStartDate.value;
+      parameters.CreatedAtEndDate = tag.refs.inputEndDate.value;
+      parameters.ClientName = tag.refs.inputClientName.value;
+      parameters.SystemName = tag.refs.inputSystemName.value;
+      parameters.UserName = tag.refs.inputUserName.value;
+      parameters.Closed = tag.refs.inputClosed.checked;
+
+      // console.log(parameters);
+      // console.log(JSON.stringify(parameters));
+
+      // Call the form validation and passes a custom function to validate other fields
+      if (formValidationPassed(customValidationPassed)) {
+        opts.onclicksearch(parameters);
+      }
+    }
+
+    const customValidationPassed = () => {
+      let field = document.getElementById("inputStartDate");
+      let result = daysBetweenDates(tag.refs.inputStartDate.value, tag.refs.inputEndDate.value);
+      if (result < 0) {
+        field.setCustomValidity("Start Date must be prior to End Date.");
+        field.focus();
+        showError(field, field.validationMessage);
+        return false;
+      }
+      else {
+        if (result > 10) {
+          field.setCustomValidity("Maximum allowed search period is 10 days between the Created At and Closed At dates.");
+          field.focus();
+          showError(field, field.validationMessage);
+          return false;
+        }
+        else {
+          return true;
+        }
+      }
+    }
+  </script>
+</filter-protocols>

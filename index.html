@@ -14,6 +14,8 @@
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
   <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- morris chart plugin CS v0.5.1-->
+  <link href="vendor/morris.js/0.5.1/morris.css">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.min.css" rel="stylesheet">
   <!-- Custom styles for the tags-->
@@ -37,6 +39,10 @@
   <!-- Custom scripts for this page-->
   <script src="js/sb-admin-datatables.min.js"></script>
   <!-- <script src="js/sb-admin-charts.min.js"></script> -->
+  <!-- raphael dependency for morris chart plugin v0.5.1-->
+  <script src="vendor/raphael.js/2.2.1/raphael.min.js"></script>
+  <!-- morris chart plugin v0.5.1-->
+  <script src="vendor/morris.js/0.5.1/morris.min.js"></script>
 
   <!-- language pack scripts -->
   <script src="./js/language/dictionary.pt.br.js"></script>
@@ -65,6 +71,8 @@
   <script src="js/website-initialization/routes.js"></script>
   <script src="js/website-initialization/session.js"></script>
   <script src="js/website-initialization/breadcrumb.js"></script>
+  <script src="js/website-initialization/messages.js"></script>
+  <script src="js/website-initialization/charts.js"></script>
 
   <!-- riot.js component initialization -->
   <wrapper id="wrapper"></wrapper>
@@ -83,14 +91,20 @@
   <script src="./tags/wire-frame/content-body.tag.html" type="riot/tag"></script>
   <script src="./tags/wire-frame/site-footer.tag.html" type="riot/tag"></script>
   <script src="./tags/wire-frame/site-navigation.tag.html" type="riot/tag"></script>
-
+  <script src="./tags/wire-frame/site-error.tag.html" type="riot/tag"></script>
+  
   <!-- tags components -->
   <script src="./tags/sample.tag.html" type="riot/tag"></script>
+  <script src="./tags/filter-protocols.tag.html" type="riot/tag"></script>
   <script src="./tags/report-exceptionslog.tag.html" type="riot/tag"></script>
   <script src="./tags/report-exceptions-details.tag.html" type="riot/tag"></script>
   <script src="./tags/report-exceptions-innerexception.tag.html" type="riot/tag"></script>
   <script src="./tags/report-protocols.tag.html" type="riot/tag"></script>
   <script src="./tags/protocol-details.tag.html" type="riot/tag"></script>
+  <script src="./tags/area-chart.tag.html" type="riot/tag"></script>
+  <script src="./tags/chart-protocols.tag.html" type="riot/tag"></script>
+  <script src="./tags/dashboard.tag.html" type="riot/tag"></script>
+  <script src="./tags/indicator.tag.html" type="riot/tag"></script>
 
   <!-- script compiler riot.js -->
   <script>

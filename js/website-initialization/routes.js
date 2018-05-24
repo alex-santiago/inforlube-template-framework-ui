@@ -27,4 +27,11 @@ routes.init = function () {
     riot.mount('#mainContentBody', 'protocol-details');
   }, 'Report Protocols - Protocol Details');
 
+  route('/chart-protocols', function () {
+    riot.mount('#mainContentBody', 'chart-protocols');
+  }, 'Graph Protocols');
+
+  route('/dashboard', function () {
+    riot.mount('#mainContentBody', 'dashboard');
+  }, 'Dashboard');
 }

@@ -1,0 +1,35 @@
+<site-error>
+  <div class="card card-main mb-3">
+    <div class="card-header bg-danger text-white"><i class="fa fa-bug"></i> Erro Severo</div>
+    <div class="card-body text-danger">
+      <div class="row">
+        <div class="col-sm-12 col-md-3 col-lg-3">
+          <div class="form-group">
+            <label>Id:</label>
+            <label>{item.errorCode}</label>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-9 col-lg-9">
+          <div class="form-group">
+            <label>Message:</label>
+            <label>{item.errorMessage}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- component javascript code -->
+  <script>
+
+    const tag = this;
+    tag.item = sessionObj.error;
+
+    this.on('mount', function() {
+    });
+
+    this.on('before-mount', function() {
+    });
+
+  </script>
+</site-error>

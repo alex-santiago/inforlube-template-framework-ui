@@ -1,0 +1,96 @@
+<chart-protocols>
+  <div class="card card-main mb-3">
+    <div class="card-header">
+      <i class="fa fa-table"></i> Gráfico de Protocolos</div>
+    <div class="card-body">
+      <div class="row mb-3">
+        <filter-protocols
+          onclickSearch={onFilterClick}
+        ></filter-protocols>
+      </div>
+      <div class="row mb-3">
+        <div class="col-12">
+          <area-chart></area-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- component javascript code -->
+  <script>
+
+    const tag = this;
+
+    this.on('mount', function () {
+    });
+
+    this.on('before-mount', function () {
+    });
+
+    // Evento Search button
+    onFilterClick(parameters){
+      inforlub.controllers.protocols.getprotocols(parameters, function (json) {
+        console.log('json');
+        console.log(json);
+        if (json.length > 0) {
+          const timeSpan = getTimeSpan(parameters.CreatedAtStartDate, parameters.CreatedAtEndDate);
+          // console.log('timeSpan');
+          // console.log(timeSpan);
+          let protocols = [];
+
+          for (i=0; i<timeSpan.length; i++){
+            let protocol = {};
+            protocol.date = moment.utc(timeSpan[i]).format('YYYY-MM-DD');
+            protocol.qttProtocol = filterProtocols(timeSpan[i], json);
+            protocols.push(protocol);
+          }
+          // console.log('protocols');
+          // console.log(protocols);
+
+          tag.items = json;
+          updateChart(protocols);
+          tag.update();
+        }
+        else {
+          updateChart();
+        }
+      });
+    }
+
+    const filterProtocols = (seekDate, protocols) => {
+      let count = 0;
+      // console.log('# SEEK DATE #');
+      // console.log(moment.utc(seekDate).format('DD/MM/YYYY'));
+      for (var i=0; i<protocols.length; i++){
+        let protocolDate = moment.utc(protocols[i].createdAt);
+        // console.log('protocolDate');
+        // console.log(moment.utc(protocolDate).format('DD/MM/YYYY'));
+        if (protocolDate.isSame(moment.utc(seekDate), 'day')) {
+          count++;
+        }
+      }
+      return count;
+    };
+
+    const getTimeSpan = (start, end) => {
+      const days = daysBetweenDates(start, end);
+      // console.log('days');
+      // console.log(days);
+      let timeSpan = [];
+      let date = new Date(moment.utc(start));
+      timeSpan.push(date);
+      for (var i=1; i<=days; i++) {
+        date = moment.utc(date).add(1, 'days');
+        timeSpan.push(new Date(date));
+      }
+      // console.log(timeSpan);
+      return timeSpan;
+    }
+
+    getProtocols(protocols) {
+      console.log('getProtocols');
+      return protocols;
+    }
+
+  </script>
+</chart-protocols>

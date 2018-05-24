@@ -1,0 +1,71 @@
+<area-chart>
+  <div id="area-chart">
+    <div id="protocol-chart" style="min-height: 100%; width: 100%;" if={showChart}></div>
+  </div>
+  <!-- component javascript code -->
+  <script>
+    const tag = this;
+    tag.showChart = false;
+    tag.chart = {};
+
+    this.on('mount', function() {
+    });
+
+    this.on('before-mount', function() {
+    });
+
+    areaChart.on('updateChart', function(chartData) {
+      console.log('onupdateChart');
+      console.log('tag.chart');
+      console.log(tag.chart);
+      if (chartData) {
+        tag.showChart = true;
+        this.update();
+        if (tag.chart.data) {
+          console.log('set');
+          tag.chart.setData(chartData);
+        }
+        else {
+          console.log('new');
+          tag.chart = configureChart(chartData);
+        }
+      }
+      else {
+        this.update();
+      }
+    }.bind(this));
+
+    function configureChart(chartData){
+      // console.log('configureChart');
+      // console.log('chartData');
+      // console.log(chartData);
+
+      tag.showChart = true;
+      return new Morris.Area({
+        // ID of the element in which to draw the chart.
+        element: 'protocol-chart',
+        // Chart data records -- each entry in this array corresponds to a point on
+        // the chart.
+        // data: [
+        //   { "date":"2018-03-17", "qttProtocol": 4 },
+        //   { "date":"2018-03-18", "qttProtocol": 0 },
+        //   { "date":"2018-03-19", "qttProtocol": 3 },
+        //   { "date":"2018-03-20", "qttProtocol": 0 }
+        // ],
+        data: chartData,
+        parseTime: true,
+        xLabels: 'day',
+        xLabelFormat: function (x) { return moment(x).format('DD/MM/YYYY'); },
+        // data: chartData,
+        // The name of the data record attribute that contains x-values.
+        xkey: 'date',
+        // A list of names of data record attributes that contain y-values.
+        ykeys: ['qttProtocol'],
+        // Labels for the ykeys -- will be displayed when you hover over the
+        // chart.
+        labels: ['Protocols']
+      });
+    }
+
+  </script>
+</area-chart>
