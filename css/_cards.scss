@@ -1,0 +1,9 @@
+div.card-main {
+  border: 1px solid rgb(52, 58, 64);
+}
+
+div.card-header {
+  color: $yellow;
+  background-color: $gray-800;
+  border-bottom: 1px solid rgba(52, 58, 64,.5);
+}

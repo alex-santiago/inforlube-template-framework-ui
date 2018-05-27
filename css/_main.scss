@@ -1,0 +1,26 @@
+body {
+  font-family: 'Fira Sans Extra Condensed', Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.main-content-body {
+  padding: 0;
+  margin: 0;
+}
+
+#image-logo {
+  max-width: 150px;
+}
+
+.image-logo--off {
+  display: none;
+}
+
+body.sidenav-toggled site-navigation .fa {
+  color: $yellow;
+}
+
+table.dataTable tr:hover, table.table tr:hover {
+  cursor: pointer;
+}

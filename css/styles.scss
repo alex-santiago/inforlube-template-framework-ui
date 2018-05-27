@@ -17,216 +17,45 @@ $inforlub-white: #fff;
 --------------------------------------------------------------*/
 @import "colors";
 
- body {
-   font-family: 'Fira Sans Extra Condensed', Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-   font-size: 1rem;
-   line-height: 1.5;
- }
-
-.main-content-body {
-  padding: 0;
-  margin: 0;
-}
-
-#image-logo {
-  max-width: 150px;
-}
-
-.image-logo--off {
-  display: none;
-}
-
-.form-group label {
-  font-weight: 700;
-  margin-bottom: 0;
-}
-
-body.sidenav-toggled site-navigation .fa {
-  color: $yellow;
-}
-
-table.dataTable tr:hover, table.table tr:hover {
-  cursor: pointer;
-}
+/*--------------------------------------------------------------
+# Main Website Content Overrides
+--------------------------------------------------------------*/
+@import "main";
 
 /*--------------------------------------------------------------
-# FONT OVERRIDE FOR ALERT MESSAGES
+# Main Website Content Overrides
 --------------------------------------------------------------*/
-
-.close {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/*--------------------------------------------------------------
-# COLOR OVERRIDES FOR CARDS
---------------------------------------------------------------*/
-
-div.card-main {
-  border: 1px solid rgb(52, 58, 64);
-}
-
-div.card-header {
-  color: $yellow;
-  background-color: #343a40;
-  border-bottom: 1px solid rgba(52, 58, 64,.5);
-}
+@import "forms";
 
 /*--------------------------------------------------------------
 # CLASSES FOR THE INDICATOR COMPONENTS
 --------------------------------------------------------------*/
-// Equivalent to .card from bootstrap
-.card-indicator {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
-}
-
-// Equivalent to .card from bootstrap
-.card-indicator > .list-group:first-child .list-group-item:first-child {
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
-}
-
-// Equivalent to .card from bootstrap
-.card-indicator > .list-group:last-child .list-group-item:last-child {
-  border-bottom-right-radius: 0.25rem;
-  border-bottom-left-radius: 0.25rem;
-}
-// Equivalent to .card-footer from bootstrap
-.card-indicator-title {
-  font-size: 1.75rem;
-  padding: 0.75rem 1.25rem;
-  background-color: rgba(0, 0, 0, 0.03);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-}
-
-.card-indicator-title:last-child {
-  border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
-}
-
-.card-header-indicator {
-  padding: 0.75rem 1.25rem;
-  margin-bottom: 0;
-  background-color: rgba(0, 0, 0, 0.03);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-}
-
-.huge {
-  font-size: 2.5rem;
-}
+@import "indicator-component";
 
 /*--------------------------------------------------------------
-# COLOR OVERRIDES FOR FORM CONTROLS
+# FONT OVERRIDE FOR ALERT MESSAGES
 --------------------------------------------------------------*/
-.form-control:focus {
-  background-color: #e9ecef;
-  border-color: $yellow;
-  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, .5);
-}
+@import "alert-message";
+
+/*--------------------------------------------------------------
+# COLOR OVERRIDES FOR CARDS
+--------------------------------------------------------------*/
+@import "cards";
+
+/*--------------------------------------------------------------
+# COLOR FOR BTN for actions (New, Save, Delete)
+--------------------------------------------------------------*/
+@import "form-button-actions";
+
 /*--------------------------------------------------------------
 # COLOR OVERRIDES FOR BTN AND Links
 --------------------------------------------------------------*/
-
-.btn-primary {
-  color: #fff;
-  background-color: #343a40;
-  border-color: #343a40;
-}
-
-.btn-primary:hover {
-  color: #fff;
-  background-color: #23272b;
-  border-color: #1d2124;
-}
-
-.btn-primary:focus, .btn-primary.focus {
-  box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
-}
-
-.btn-primary.disabled, .btn-primary:disabled {
-  color: #fff;
-  background-color: #343a40;
-  border-color: #343a40;
-}
-
-.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
-.show > .btn-primary.dropdown-toggle {
-  color: #fff;
-  background-color: #1d2124;
-  border-color: #171a1d;
-}
-
-.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
-.show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
-}
-
-a {
-  color: #23272b;
-}
-
-a:hover {
-  color: #1d2124;
-}
-
-.page-link {
-  color: #343a40;
-  background-color: #fff;
-  border: 1px solid #343a40;
-}
-
-.page-link:hover {
-  color: #fff;
-  background-color: #23272b;
-  border-color: #1d2124;
-}
-
-.page-link:focus {
-  box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
-}
-
-.page-item.active .page-link {
-  color: #fff;
-  background-color: #343a40;
-  border-color: #343a40;
-}
-
-.page-item.disabled .page-link {
-  color: #23272b;
-  background-color: #fff;
-  border-color: #1d2124;
-}
+@import "button-link";
 
 /*--------------------------------------------------------------
 # ERROR MESSAGES AND STYLES
 --------------------------------------------------------------*/
-.error .form-control:focus {
-  background-color: #e9ecef;
-  border-color: #a94442;
-  box-shadow: 0 0 0 0.2rem rgba(111, 8, 8, 0.5);
-}
-
-.error {
-  color: #a94442;
-  border-color: #a94442;
-}
-
-.error-message {
-  color: #a94442;
-  font-style: italic;
-}
+@import "error-message";
 
 /*--------------------------------------------------------------
 # SWITCH CONTROL STYLE SHEET

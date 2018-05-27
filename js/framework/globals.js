@@ -1,10 +1,3 @@
-var inforlub = {};
-
-var language = {};
-language = languageEnUs;
-
-var dictionary = {};
-dictionary = dictionaryPtBr;
 
 jQuery.unparam = function (query) {
     var setValue = function(root, path, value){

@@ -1,0 +1,22 @@
+.form-group label {
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.form-group label.read-only {
+  display: block;
+  font-weight: 400;
+}
+
+textarea.eula {
+  min-height: 300px;
+}
+
+/*--------------------------------------------------------------
+# COLOR OVERRIDES FOR FORM CONTROLS
+--------------------------------------------------------------*/
+.form-control:focus {
+  background-color: #e9ecef;
+  border-color: $yellow;
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, .5);
+}

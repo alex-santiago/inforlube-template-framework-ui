@@ -9,30 +9,32 @@
   <meta name="author" content="All2Sys Solutions">
   <title>All2Sys Solutions</title>
   <!-- Bootstrap 4.0.0 core CSS-->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- DataTables Bootstrap 4 CSS-->
-  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="plugins/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
-  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- morris chart plugin CS v0.5.1-->
-  <link href="vendor/morris.js/0.5.1/morris.css">
+  <link href="plugins/morris.js/0.5.1/morris.css">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.min.css" rel="stylesheet">
-  <!-- Custom styles for the tags-->
+  <!-- Styles for the framework-->
   <link href="css/styles.css" rel="stylesheet">
+  <!-- Custom Styles for the framework-->
+  <link href="css/custom.css" rel="stylesheet">
   <link rel="shortcut icon" href="images/favicon.ico" type="image/ico">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="plugins/jquery-easing/jquery.easing.min.js"></script>
   <!-- Page level plugin JavaScript-->
-  <script src="vendor/chart.js/Chart.min.js"></script>
-  <script src="vendor/datatables/jquery.dataTables.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+  <script src="plugins/chart.js/Chart.min.js"></script>
+  <script src="plugins/datatables/jquery.dataTables.js"></script>
+  <script src="plugins/datatables/dataTables.bootstrap4.js"></script>
   <!-- Custom scripts for all pages-->
   <!-- <script src="js/sb-admin.min.js"></script> -->
   <script src="js/sb-admin.js"></script>
@@ -40,39 +42,43 @@
   <script src="js/sb-admin-datatables.min.js"></script>
   <!-- <script src="js/sb-admin-charts.min.js"></script> -->
   <!-- raphael dependency for morris chart plugin v0.5.1-->
-  <script src="vendor/raphael.js/2.2.1/raphael.min.js"></script>
+  <script src="plugins/raphael.js/2.2.1/raphael.min.js"></script>
   <!-- morris chart plugin v0.5.1-->
-  <script src="vendor/morris.js/0.5.1/morris.min.js"></script>
+  <script src="plugins/morris.js/0.5.1/morris.min.js"></script>
 
   <!-- language pack scripts -->
-  <script src="./js/language/dictionary.pt.br.js"></script>
-  <script src="./js/language/language.pt.br.js"></script>
-  <script src="./js/language/language.en.us.js"></script>
-  <script src="./js/language/language.es.es.js"></script>
+  <script src="js/framework/language/dictionary.pt.br.js"></script>
+  <script src="js/framework/language/language.pt.br.js"></script>
+  <script src="js/framework/language/language.en.us.js"></script>
+  <script src="js/framework/language/language.es.es.js"></script>
   <!-- application plugins scripts -->
   <!-- spinner js 2.3.2 -->
-  <script src="vendor/spinjs/2.3.2/spin.min.js"></script>
+  <script src="plugins/spinjs/2.3.2/spin.min.js"></script>
 
   <!-- moment.js plugin version 2.20.1 -->
-  <script src="vendor/moment/2.20.1/moment.js"></script>
+  <script src="plugins/moment/2.20.1/moment.js"></script>
 
   <!-- riot.js plugin -->
-  <script src="vendor/riot/route.min.js"></script>
-  <script src="vendor/riot/riot_compiler.min.js"></script>
+  <script src="plugins/riot/route.min.js"></script>
+  <script src="plugins/riot/riot_compiler.min.js"></script>
 
-  <!-- riot.js scripts initialization -->
-  <script src="js/website-initialization/globals.js"></script>
-  <script src="js/website-initialization/formvalidation.js"></script>
-  <script src="js/website-initialization/menu.js"></script>
-  <script src="js/website-initialization/app.js"></script>
-  <script src="js/website-initialization/ajax.js"></script>
-  <script src="js/website-initialization/controllers.js"></script>
-  <script src="js/website-initialization/host.js"></script>
-  <script src="js/website-initialization/routes.js"></script>
-  <script src="js/website-initialization/session.js"></script>
-  <script src="js/website-initialization/breadcrumb.js"></script>
-  <script src="js/website-initialization/messages.js"></script>
-  <script src="js/website-initialization/charts.js"></script>
+  <!-- framework scripts initialization -->
+  <script src="js/framework/globals.js"></script>
+  <script src="js/framework/formvalidation.js"></script>
+  <script src="js/framework/menu.js"></script>
+  <script src="js/framework/app.js"></script>
+  <script src="js/framework/ajax.js"></script>
+  <script src="js/framework/session.js"></script>
+  <script src="js/framework/breadcrumb.js"></script>
+  <script src="js/framework/messages.js"></script>
+  <script src="js/framework/charts.js"></script>
+
+  <!-- framework scripts configuration -->
+  <script src="js/framework/configuration/language-config.js"></script>
+  <script src="js/framework/configuration/controllers.js"></script>
+  <script src="js/framework/configuration/menu-items.js"></script>
+  <script src="js/framework/configuration/host.js"></script>
+  <script src="js/framework/configuration/routes.js"></script>
 
   <!-- riot.js component initialization -->
   <wrapper id="wrapper"></wrapper>
@@ -92,7 +98,7 @@
   <script src="./tags/wire-frame/site-footer.tag.html" type="riot/tag"></script>
   <script src="./tags/wire-frame/site-navigation.tag.html" type="riot/tag"></script>
   <script src="./tags/wire-frame/site-error.tag.html" type="riot/tag"></script>
-  
+
   <!-- tags components -->
   <script src="./tags/sample.tag.html" type="riot/tag"></script>
   <script src="./tags/filter-protocols.tag.html" type="riot/tag"></script>

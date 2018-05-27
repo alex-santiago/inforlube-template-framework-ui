@@ -1,3 +1,5 @@
+const inforlub = new Object();
+
 inforlub.controllers = {};
 
 /* exceptionslog */
