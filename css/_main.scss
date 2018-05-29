@@ -24,3 +24,18 @@ body.sidenav-toggled site-navigation .fa {
 table.dataTable tr:hover, table.table tr:hover {
   cursor: pointer;
 }
+
+div.page-header {
+  color: $yellow;
+  background-color: $gray-800;
+  padding: .75rem 1.25rem;
+  border-radius: calc(.5rem - 1px) calc(.5rem - 1px) 0 0;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+div.page-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
