@@ -30,7 +30,7 @@
     const tag = this;
 
     this.on('mount', function() {
-      tag.menuparent = JSON.parse(menuItens);
+      tag.menuparent = menuItens;
       tag.update();
     });
 

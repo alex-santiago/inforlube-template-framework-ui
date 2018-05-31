@@ -1,10 +1,53 @@
-const menuItens = ` [
-  { "id": "item0", "ico": "fa-home fa-lg", "description": "Home", "route": "/", "children": [] },
-  { "id": "item1", "ico": "fa-clone", "description": "Sample", "route": "/sample", "children": [] },
-  { "id": "item1", "ico": "fa-dashboard", "description": "Dashboard", "route": "/dashboard", "children": [] },
-  { "id": "item2", "ico": "fa-clone", "description": "Analytics", "route": "#", "children": [
-    { "ico": "fa-caret-right", "description": "Exception Logs", "route": "/report-exceptionslog", "parent": "Analytics"},
-    { "ico": "fa-caret-right", "description": "Protocols", "route": "/report-protocols", "parent": "Analytics"},
-    { "ico": "fa-caret-right", "description": "Chart Protocols", "route": "/chart-protocols", "parent": "Analytics"}
-  ] }
-] `;
+const menuItens = [];
+var item = new Object();
+var subitem = new Object();
+
+item = new Object();
+item.id = "item0";
+item.ico = "fa-home fa-lg";
+item.description = "Home";
+item.route = "/";
+item.children = [];
+menuItens.push(item);
+
+item = new Object();
+item.id = "item1";
+item.ico = "fa-clone";
+item.description = "Sample";
+item.route = "/sample";
+item.children = [];
+menuItens.push(item);
+
+item = new Object();
+item.id = "item2";
+item.ico = "fa-dashboard";
+item.description = "Dashboard";
+item.route = "/dashboard";
+item.children = [];
+menuItens.push(item);
+
+item = new Object();
+item.id = "item3";
+item.ico = "fa-clone";
+item.description = "Analytics";
+item.route = "#";
+item.children = [];
+subitem = new Object();
+subitem.ico = "fa-caret-right";
+subitem.description = "Exception Logs";
+subitem.route = "/report-exceptionslog";
+subitem.parent = "Analytics";
+item.children.push(subitem);
+subitem = new Object();
+subitem.ico = "fa-caret-right";
+subitem.description = "Protocols";
+subitem.route = "/report-protocols";
+subitem.parent = "Analytics";
+item.children.push(subitem);
+subitem = new Object();
+subitem.ico = "fa-caret-right";
+subitem.description = "Protocols";
+subitem.route = "/chart-protocols";
+subitem.parent = "Chart Protocols";
+item.children.push(subitem);
+menuItens.push(item);

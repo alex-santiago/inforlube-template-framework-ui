@@ -1,4 +1,5 @@
 const inforlub = new Object();
+const ajaxDebug = false;
 
 inforlub.controllers = {};
 
