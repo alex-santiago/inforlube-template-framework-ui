@@ -7,6 +7,10 @@ routes.init = function () {
     riot.mount('#wrapper', 'wrapper');
   });
 
+  route('/site-error', function () {
+    riot.mount('#mainContentBody', 'site-error');
+  }, 'Error Message');
+
   route('/sample', function () {
     riot.mount('#mainContentBody', 'sample');
   }, 'Sample');
