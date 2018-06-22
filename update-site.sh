@@ -25,17 +25,26 @@ fi
 if [ ! -d "$DESTINATION/js" ]; then
   echo " - Creating directory: /js"; mkdir "$DESTINATION/js"
 fi
-if [ ! -d "$DESTINATION/js/language" ]; then
-  echo " - Creating directory: /js/language"; mkdir "$DESTINATION/js/language"
+if [ ! -d "$DESTINATION/js/framework/configuration" ]; then
+  echo " - Creating directory: /js/framework/configuration"; mkdir "$DESTINATION/js/framework/configuration"
 fi
-if [ ! -d "$DESTINATION/js/website-initialization" ]; then
-  echo " - Creating directory: /js/website-initialization"; mkdir "$DESTINATION/js/website-initialization"
+if [ ! -d "$DESTINATION/js/framework/language" ]; then
+  echo " - Creating directory: /js/framework/language"; mkdir "$DESTINATION/js/framework/language"
 fi
+if [ ! -d "$DESTINATION/plugins" ]; then
+  echo " - Creating directory: /plugins"; mkdir "$DESTINATION/plugins"
+fi
+# if [ ! -d "$DESTINATION/js/website-initialization" ]; then
+#   echo " - Creating directory: /js/website-initialization"; mkdir "$DESTINATION/js/website-initialization"
+# fi
 if [ ! -d "$DESTINATION/scss" ]; then
   echo " - Creating directory: /scss"; mkdir "$DESTINATION/scss"
 fi
 if [ ! -d "$DESTINATION/scss/navbar" ]; then
   echo " - Creating directory: /scss/navbar"; mkdir "$DESTINATION/scss/navbar"
+fi
+if [ ! -d "$DESTINATION/support" ]; then
+  echo " - Creating directory: /support"; mkdir "$DESTINATION/support"
 fi
 if [ ! -d "$DESTINATION/tags" ]; then
   echo " - Creating directory: /tags"; mkdir "$DESTINATION/tags"
@@ -43,51 +52,69 @@ fi
 if [ ! -d "$DESTINATION/tags/wire-frame" ]; then
   echo " - Creating directory: /tags/wire-frame"; mkdir "$DESTINATION/tags/wire-frame"
 fi
-if [ ! -d "$DESTINATION/vendor" ]; then
-  echo " - Creating directory: /vendor"; mkdir "$DESTINATION/vendor"
-fi
 echo "Directory checking done."
 echo
 echo "Starting to copy files:"
 echo "Copying Default CSS"
-echo "./css" "$DESTINATION"
-cp -a "./css" "$DESTINATION"
+echo "./css/styles.css" "$DESTINATION/css/"
+cp -a "./css/styles.css" "$DESTINATION/css/"
+echo "./css/custom.css" "$DESTINATION/css/"
+cp -np "./css/custom.css" "$DESTINATION/css/"
 echo
 echo "Copying Default images"
 echo "./images" "$DESTINATION"
 cp -a "./images" "$DESTINATION"
 echo
 echo "Copying Default js"
+echo " - Configuration files"
+echo "./js/framework/configuration/controllers.js" "$DESTINATION/js/framework/configuration/"
+cp -np "./js/framework/configuration/controllers.js" "$DESTINATION/js/framework/configuration/"
+echo "./js/framework/configuration/host.js" "$DESTINATION/js/framework/configuration/"
+cp -np "./js/framework/configuration/host.js" "$DESTINATION/js/framework/configuration/"
+echo "./js/framework/configuration/language-config.js" "$DESTINATION/js/framework/configuration/"
+cp -np "./js/framework/configuration/language-config.js" "$DESTINATION/js/framework/configuration/"
+echo "./js/framework/configuration/menu-items.js" "$DESTINATION/js/framework/configuration/"
+cp -np "./js/framework/configuration/menu-items.js" "$DESTINATION/js/framework/configuration/"
+echo "./js/framework/configuration/routes.js" "$DESTINATION/js/framework/configuration/"
+cp -np "./js/framework/configuration/routes.js" "$DESTINATION/js/framework/configuration/"
+echo "./js/framework/configuration/session-config.js" "$DESTINATION/js/framework/configuration/"
+cp -np "./js/framework/configuration/session-config.js" "$DESTINATION/js/framework/configuration/"
+echo "./js/framework/configuration/tables.js" "$DESTINATION/js/framework/configuration/"
+cp -np "./js/framework/configuration/tables.js" "$DESTINATION/js/framework/configuration/"
+echo "./js/framework/configuration/test-variables.js" "$DESTINATION/js/framework/configuration/"
+cp -np "./js/framework/configuration/test-variables.js" "$DESTINATION/js/framework/configuration/"
 echo " - Language files"
-echo "./js/language/dictionary.pt.br.js" "$DESTINATION/js/language/"
-cp -np "./js/language/dictionary.pt.br.js" "$DESTINATION/js/language/"
-echo "./js/language/language.pt.br.js" "$DESTINATION/js/language/"
-cp -np "./js/language/language.pt.br.js" "$DESTINATION/js/language/"
-echo "./js/language/language.en.us.js" "$DESTINATION/js/language/"
-cp -np "./js/language/language.en.us.js" "$DESTINATION/js/language/"
-echo "./js/language/language.es.es.js" "$DESTINATION/js/language/"
-cp -np "./js/language/language.es.es.js" "$DESTINATION/js/language/"
-echo " - Website initialization scripts"
-echo "./js/website-initialization/ajax.js" "$DESTINATION/js/website-initialization/"
-cp -a "./js/website-initialization/ajax.js" "$DESTINATION/js/website-initialization/"
-echo "./js/website-initialization/app.js" "$DESTINATION/js/website-initialization/"
-cp -a "./js/website-initialization/app.js" "$DESTINATION/js/website-initialization/"
-echo "./js/website-initialization/breadcrumb.js" "$DESTINATION/js/website-initialization/"
-cp -a "./js/website-initialization/breadcrumb.js" "$DESTINATION/js/website-initialization/"
-echo "./js/website-initialization/controllers.js" "$DESTINATION/js/website-initialization/"
-cp -np "./js/website-initialization/controllers.js" "$DESTINATION/js/website-initialization/"
-echo "./js/website-initialization/formvalidation.js" "$DESTINATION/js/website-initialization/"
-cp -a "./js/website-initialization/formvalidation.js" "$DESTINATION/js/website-initialization/"
-echo "./js/website-initialization/globals.js" "$DESTINATION/js/website-initialization/"
-cp -a "./js/website-initialization/globals.js" "$DESTINATION/js/website-initialization/"
-echo "./js/website-initialization/host.js" "$DESTINATION/js/website-initialization/"
-cp -np "./js/website-initialization/host.js" "$DESTINATION/js/website-initialization/"
-echo "./js/website-initialization/menu.js" "$DESTINATION/js/website-initialization/"
-cp -np "./js/website-initialization/menu.js" "$DESTINATION/js/website-initialization/"
-echo "./js/website-initialization/routes.js" "$DESTINATION/js/website-initialization/"
-cp -np "./js/website-initialization/routes.js" "$DESTINATION/js/website-initialization/"
-echo "./js/website-initialization/session.js" "$DESTINATION/js/website-initialization/"
-cp -np "./js/website-initialization/session.js" "$DESTINATION/js/website-initialization/"
+echo "./js/framework/language/dictionary.pt.br.js" "$DESTINATION/js/framework/language/"
+cp -a "./js/framework/language/dictionary.pt.br.js" "$DESTINATION/js/framework/language/"
+echo "./js/framework/language/language.pt.br.js" "$DESTINATION/js/framework/language/"
+cp -a "./js/framework/language/language.pt.br.js" "$DESTINATION/js/framework/language/"
+echo "./js/framework/language/language.en.us.js" "$DESTINATION/js/framework/language/"
+cp -a "./js/framework/language/language.en.us.js" "$DESTINATION/js/framework/language/"
+echo "./js/framework/language/language.es.es.js" "$DESTINATION/js/framework/language/"
+cp -a "./js/framework/language/language.es.es.js" "$DESTINATION/js/framework/language/"
+echo " - Framework base scripts"
+echo "./js/framework/ajax.js" "$DESTINATION/js/framework/"
+cp -a "./js/framework/ajax.js" "$DESTINATION/js/framework/"
+echo "./js/framework/app.js" "$DESTINATION/js/framework/"
+cp -a "./js/framework/app.js" "$DESTINATION/js/framework/"
+echo "./js/framework/breadcrumb.js" "$DESTINATION/js/framework/"
+cp -a "./js/framework/breadcrumb.js" "$DESTINATION/js/framework/"
+echo "./js/framework/charts.js" "$DESTINATION/js/framework/"
+cp -a "./js/framework/charts.js" "$DESTINATION/js/framework/"
+echo "./js/framework/formvalidation.js" "$DESTINATION/js/framework/"
+cp -a "./js/framework/formvalidation.js" "$DESTINATION/js/framework/"
+echo "./js/framework/globals.js" "$DESTINATION/js/framework/"
+cp -a "./js/framework/globals.js" "$DESTINATION/js/framework/"
+echo "./js/framework/menu.js" "$DESTINATION/js/framework/"
+cp -a "./js/framework/menu.js" "$DESTINATION/js/framework/"
+echo "./js/framework/messages.js" "$DESTINATION/js/framework/"
+cp -a "./js/framework/messages.js" "$DESTINATION/js/framework/"
+echo "./js/framework/modal.js" "$DESTINATION/js/framework/"
+cp -a "./js/framework/modal.js" "$DESTINATION/js/framework/"
+echo "./js/framework/pagination.js" "$DESTINATION/js/framework/"
+cp -a "./js/framework/pagination.js" "$DESTINATION/js/framework/"
+echo "./js/framework/session.js" "$DESTINATION/js/framework/"
+cp -a "./js/framework/session.js" "$DESTINATION/js/framework/"
 echo " - Other scripts"
 echo "./js/sb-admin-charts.js" "$DESTINATION/js/sb-admin-charts.js"
 cp -a "./js/sb-admin-charts.js" "$DESTINATION/js/sb-admin-charts.js"
@@ -102,6 +129,10 @@ cp -a "./js/sb-admin.js" "$DESTINATION/js/sb-admin.js"
 echo "./js/sb-admin.min.js" "$DESTINATION/js/sb-admin.min.js"
 cp -a "./js/sb-admin.min.js" "$DESTINATION/js/sb-admin.min.js"
 echo
+echo "Copying Default plugins scripts"
+echo "./plugins" "$DESTINATION"
+cp -a "./plugins" "$DESTINATION"
+echo
 echo "Copying Default scss"
 echo "./scss" "$DESTINATION"
 cp -a "./scss" "$DESTINATION"
@@ -109,10 +140,6 @@ echo
 echo "Copying Default tags wire-frames"
 echo "./tags/wire-frame" "$DESTINATION/tags"
 cp -a "./tags/wire-frame" "$DESTINATION/tags"
-echo
-echo "Copying Default vendor scripts"
-echo "./vendor" "$DESTINATION"
-cp -a "./vendor" "$DESTINATION"
 echo
 echo "Copying Default index file"
 echo "./index.html" "$DESTINATION"
