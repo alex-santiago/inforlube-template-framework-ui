@@ -202,51 +202,86 @@ var languagePtBr = {
   },
 
   protocol: {
-    reportProtocols: {
-      title: 'Protocols Report',
-      clientName: "Client Name",
-      api: "Api",
-      systemName: "System Name",
-      userName: "User Name",
-      createdAtDate: "Created at",
-      closedAtDate: "Closed at",
-      closed: "Closed",
-      sessionToken: "Session Token",
-      id: "Id",
+    title: {
+      protocolsList: "Protocols Report",
+      protocolsDetails: "Protocol Details"
+    },
+    subtitle: {
+      protocol: "Protocol",
       userTitle: 'User',
-      userId: 'User Id',
-      userName: 'User Name',
-      accountId: 'User Account',
-      email: 'email',
       detailsTitle: 'Details',
-      detailsYear: 'Year',
-      detailsBrandId: 'Brand Id',
-      detailsModelId: 'Model Id',
-      detailsFuelId: 'Fuel Id',
-      detailsEngineId: 'Engine Id',
-      detailsVehicleTypeId: 'Vehicle Type Id',
-      requestTitle: 'Request',
-      requestApi: 'Api',
-      requestDate: 'Date',
-      requestIpAddress: 'IP Address',
-      requestContentType: 'Content Type',
+      requestTitle: "Request",
+    },
+    action: {
+    },
+    attributes: {
+      api: "Api",
+      userName: "Nome de Usuário",
+      createdAtDate: "Criado em ",
+      closedAtDate: "Fechado em",
+      closed: "Fechado",
+      sessionToken: "Toke de Sessão",
+      id: "Id",
+      userId: "Id do Usuário",
+      userName: "Nome do Usuário",
+      accountId: "Conta do Usuário",
+      email: "E-mail",
+      year: "Ano",
+      brand: {
+        id: "Id da Marca",
+        name: "Nome da Marca"
+      },
+      model: {
+        id: "Id do Modelo",
+        name: "Nome do Modelo"
+      },
+      fuel: {
+        id: "Id do Combustível",
+        name: "Tipo de Combustível"
+      },
+      engine: {
+        id: "Id do Motor",
+        name: "Espec do Motor"
+      },
+      modelVehicleType: {
+        id: "Id do Tipo de Veículo",
+        name: "Tipo de Veículo"
+      },
+      requestApi: "Api",
+      requestDate: 'Data',
+      requestIpAddress: 'Endereço de IP',
+      requestContentType: 'Tipo de Conteúdo',
       requestUri: 'Uri'
     },
-    protocolDetails: {
-      title: 'Protocol Details',
-      titleProtocol: 'Protocol'
-    }
+    messages: {
+      dateValidationStartDateEndDate: "Data de Início tem que ser anterior a Data de Término.",
+      dateValidationMaximumDateInterval: "O intervalo máximo de pesquisa entre a Data Criação e a Data de Fechamento é de 10 dias."
+    },
+    placeholders: {    }
   },
 
   exception: {
-    reportExceptionslog: {
-      title: "Exceptions Log Report",
-      startDate: "Start Date",
-      endDate: "End Date",
+    title: {
+      exceptionsLogList: "Lista de Logs de Exceptions",
+      exceptionsLogDetails: "Detalhes do Log de Exceptions"
+    },
+    subtitle: {
+      innerException: "Inner Exception"
+    },
+    action: {
+    },
+    attributes: {
+      startDate: "Data Inicial",
+      endDate: "Data Final",
       api: "Api",
-      date: "Date",
-      exceptionClassName: "Class",
-      exceptionMessage: "Menssage",
+      date: "Data",
+      message: "Messagem",
+      data: "Dados",
+      hResult: "HResult",
+      source: "Source",
+      targetSite: "Target Site",
+      helpLink: "Help Link",
+      stackTrace: "Stack Trace"
     }
   }
 

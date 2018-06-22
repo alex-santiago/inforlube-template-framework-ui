@@ -202,51 +202,86 @@ var languageEnUs = {
   },
 
   protocol: {
-    reportProtocols: {
-      title: 'Protocols Report',
-      clientName: "Client Name",
+    title: {
+      protocolsList: "Protocols Report",
+      protocolsDetails: "Protocol Details"
+    },
+    subtitle: {
+      protocol: "Protocol",
+      userTitle: 'User',
+      detailsTitle: 'Details',
+      requestTitle: "Request",
+    },
+    action: {
+    },
+    attributes: {
       api: "Api",
-      systemName: "System Name",
       userName: "User Name",
       createdAtDate: "Created at",
       closedAtDate: "Closed at",
       closed: "Closed",
       sessionToken: "Session Token",
       id: "Id",
-      userTitle: 'User',
-      userId: 'User Id',
-      userName: 'User Name',
-      accountId: 'User Account',
-      email: 'email',
-      detailsTitle: 'Details',
-      detailsYear: 'Year',
-      detailsBrandId: 'Brand Id',
-      detailsModelId: 'Model Id',
-      detailsFuelId: 'Fuel Id',
-      detailsEngineId: 'Engine Id',
-      detailsVehicleTypeId: 'Vehicle Type Id',
-      requestTitle: 'Request',
-      requestApi: 'Api',
+      userId: "User Id",
+      userName: "User Name",
+      accountId: "User Account",
+      email: "email",
+      year: "Year",
+      brand: {
+        id: "Brand Id",
+        name: "Brand Name"
+      },
+      model: {
+        id: "Model Id",
+        name: "Model Name"
+      },
+      fuel: {
+        id: "Fuel Id",
+        name: "Fuel Type"
+      },
+      engine: {
+        id: "Engine Id",
+        name: "Engine Espec"
+      },
+      modelVehicleType: {
+        id: "Vehicle Type Id",
+        name: "Vehicle Type"
+      },
+      requestApi: "Api",
       requestDate: 'Date',
       requestIpAddress: 'IP Address',
       requestContentType: 'Content Type',
       requestUri: 'Uri'
     },
-    protocolDetails: {
-      title: 'Protocol Details',
-      titleProtocol: 'Protocol'
-    }
+    messages: {
+      dateValidationStartDateEndDate: "Start Date must be prior to End Date.",
+      dateValidationMaximumDateInterval: "Maximum allowed search period is 10 days between the Created At and Closed At dates."
+    },
+    placeholders: {    }
   },
 
   exception: {
-    reportExceptionslog: {
-      title: "Exceptions Log Report",
+    title: {
+      exceptionsLogList: "Exceptions Log List",
+      exceptionsLogDetails: "Exceptions Log Details"
+    },
+    subtitle: {
+      innerException: "Inner Exception"
+    },
+    action: {
+    },
+    attributes: {
       startDate: "Start Date",
       endDate: "End Date",
       api: "Api",
       date: "Date",
-      exceptionClassName: "Class",
-      exceptionMessage: "Menssage",
+      message: "Message",
+      data: "Data",
+      hResult: "Class",
+      source: "Source",
+      targetSite: "Target Site",
+      helpLink: "Help Link",
+      stackTrace: "Stack Trace"
     }
   }
 
