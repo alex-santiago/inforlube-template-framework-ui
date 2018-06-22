@@ -1,6 +1,3 @@
-const menuItens = [];
-var item = new Object();
-var subitem = new Object();
 
 item = new Object();
 item.id = "item0";

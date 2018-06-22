@@ -1,0 +1,32 @@
+<modal>
+	<span id="{opts.data.id}" class="easy-modal-wrapper {opts.data.autoHeight ? 'auto-height' : ''}" style="display:none;">
+		<div class="easy-modal-overlay">&nbsp;</div>
+		<div class="easy-modal" style="display:none;">
+			<div class="easy-modal-header" if={opts.data.title}>
+				<h2>{opts.data.title}</h2>
+                <span class="easy-modal-close"><i class="fa fa-close" onclick={closeModal}></i></span>
+			</div>
+			<div class="easy-modal-content">
+				<yield></yield>
+			</div>
+			<div class="easy-modal-footer flex-box">
+				<button class="btn btn-{action.bootstrapBtnClass}" each={action, index in opts.data.actionBtns} onclick={action.onclick || execAction(action)}>{action.title}</button>
+			</div>
+		</div>
+	</span>
+
+<!-- component javascript code -->
+    <script>
+        var self = this;
+
+	    execAction(action){
+	    	return function(a){
+	    		eval(action.action)
+	    	};
+	    }
+
+    	closeModal(){
+    		modal.hide(opts.data.id);
+    	}
+    </script>
+</modal>

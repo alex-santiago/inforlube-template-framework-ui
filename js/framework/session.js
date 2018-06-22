@@ -15,11 +15,20 @@ var saveSession = function(){
 var clearSession = function(){
     sessionObj = new Object();
     sessionObj.error = new Object();
-    sessionObj.protocols = new Object();
-    sessionObj.exceptions = new Object();
+    sessionObj.host = getHost();
+    initSession();
 
     saveSession();
 }
+
+const getHost = () => {
+  let host = loadCache('host');
+  if (host == null || typeof host == 'undefined') {
+    host = getParameterByName('host');
+    saveCache('host', host);
+  }
+  return host;
+};
 
 var saveCache = function(name, data){
     localStorage.setItem(name, JSON.stringify(data));

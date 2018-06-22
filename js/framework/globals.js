@@ -1,4 +1,3 @@
-
 jQuery.unparam = function (query) {
     var setValue = function(root, path, value){
         if(path.length > 1){
@@ -97,4 +96,23 @@ const daysBetweenDates = (date1, date2) => {
   let days = moment.utc(date2).diff(moment.utc(date1));
   days = days / (24 * 60 * 60 * 1000)
   return days;
+};
+
+const getParameterByName = (name, url) => {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+};
+
+String.prototype.format = function () {
+  var args = arguments;
+  return this.replace(/\{\{|\}\}|\{(\d+)\}/g, function (m, n) {
+    if (m == "{{") { return "{"; }
+    if (m == "}}") { return "}"; }
+    return args[n];
+  });
 };

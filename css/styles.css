@@ -959,6 +959,7 @@ a:hover {
   background-color: #F5F8FC;
   border-color: #adb5bd;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+  margin-right: .75rem;
 }
 
 /* CSS3 on/off switches */
@@ -988,6 +989,7 @@ a:hover {
   -o-transition: text-indent .3s ease;
   transition: text-indent .3s ease;
   top: auto;
+  margin-right: .75rem;
 }
 
 .switch-square.switch-bootstrap + .lable::before {
@@ -1060,6 +1062,99 @@ a:hover {
 
 .switch-square.switch-bootstrap + .lable::after {
   border-radius: 2px;
+}
+
+/*--------------------------------------------------------------
+# SWITCH CONTROL STYLE SHEET
+--------------------------------------------------------------*/
+.flex-box {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+
+.easy-modal-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99999999;
+}
+
+.easy-modal-wrapper .easy-modal-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.easy-modal-wrapper .easy-modal {
+  position: relative;
+  width: 80%;
+  top: 5%;
+  left: 10%;
+  z-index: 2001;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 7px 2px #2f2f2f;
+  box-shadow: 0px 0px 7px 2px #2f2f2f;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.easy-modal-wrapper .easy-modal-close {
+  color: black;
+  float: right;
+  margin: 8px 15px;
+  font-size: 20px;
+  position: absolute;
+  top: 0;
+  right: 0px;
+}
+
+.easy-modal-wrapper .easy-modal-header {
+  padding: 10px 15px;
+  border-bottom: 1px solid #ccc;
+  background-color: white;
+  width: 100%;
+}
+
+.easy-modal-wrapper .easy-modal-header h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.easy-modal-wrapper .easy-modal-content {
+  padding: 10px 15px;
+  overflow: hidden;
+}
+
+.easy-modal-wrapper .easy-modal-footer {
+  width: 100%;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  background-color: white;
+}
+
+.easy-modal-wrapper .easy-modal-footer .btn {
+  margin: 0 5px;
+}
+
+/** Auto height **/
+.easy-modal-wrapper.auto-height .easy-modal-content,
+.easy-modal-wrapper.auto-height .slimScrollDiv,
+.easy-modal-wrapper.auto-height .easy-modal {
+  height: auto !important;
+}
+
+.easy-modal-wrapper.auto-height .easy-modal {
+  padding-bottom: 0;
 }
 
 /*--------------------------------------------------------------

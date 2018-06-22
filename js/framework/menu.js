@@ -1,4 +1,7 @@
 const path = new Object;
+const menuItens = [];
+var item = new Object();
+var subitem = new Object();
 
 // declare default path and description
 path.current = "/";

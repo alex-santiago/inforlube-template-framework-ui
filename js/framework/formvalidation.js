@@ -60,44 +60,44 @@ const hasError = (field) => {
   if (validity.valid) return;
 
   // If field is required and empty
-  if (validity.valueMissing) return 'Please fill out this field.';
+  if (validity.valueMissing) return language.globals.formValidation.requiredField;
 
   // If not the right type
   if (validity.typeMismatch) {
     // Email
-    if (field.type === 'email') return 'Please enter an email address.';
+    if (field.type === 'email') return language.globals.formValidation.email;
 
     // URL
-    if (field.type === 'url') return 'Please enter a URL.';
+    if (field.type === 'url') return language.globals.formValidation.url;
 
     // else
-    return 'Please use the correct input type.';
+    return language.globals.formValidation.typeMismatch;
   }
 
   // If too short
-  if (validity.tooShort) return 'Please lengthen this text to ' + field.getAttribute('minLength') + ' characters or more. You are currently using ' + field.value.length + ' characters.';
+  if (validity.tooShort) return language.globals.formValidation.tooShort.format(field.getAttribute('minLength'), field.value.length);
 
   // If too long
-  if (validity.tooLong) return 'Please shorten this text to no more than ' + field.getAttribute('maxLength') + ' characters. You are currently using ' + field.value.length + ' characters.';
+  if (validity.tooLong) return language.globals.formValidation.tooLong.format(field.getAttribute('maxLength'), field.value.length);
 
   // If number input isn't a number
-  if (validity.badInput) return 'Please enter a number.';
+  if (validity.badInput) return language.globals.formValidation.badInput;
 
   // If a number value doesn't match the step interval
-  if (validity.stepMismatch) return 'Please select a valid value.';
+  if (validity.stepMismatch) return language.globals.formValidation.stepMismatch;
 
   // If a number field is over the max
-  if (validity.rangeOverflow) return 'Please select a value that is no more than ' + field.getAttribute('max') + '.';
+  if (validity.rangeOverflow) return language.globals.formValidation.rangeOverflow.format(field.getAttribute('max'));
 
   // If a number field is below the min
-  if (validity.rangeUnderflow) return 'Please select a value that is no less than ' + field.getAttribute('min') + '.';
+  if (validity.rangeUnderflow) return language.globals.formValidation.rangeUnderflow.format(field.getAttribute('min'));
 
   // If pattern doesn't match
   if (validity.patternMismatch) {
     // If pattern info is included, return custom error
     if (field.hasAttribute('title')) return field.getAttribute('title');
     // Otherwise, generic error
-    return 'Please match the requested format.';
+    return language.globals.formValidation.patternMismatch;
   }
   // If all else fails, return a generic catchall error
   // return 'The value you entered for this field is invalid.';

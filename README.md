@@ -17,17 +17,27 @@ This is the root directory of the website. It contains the basic files needed to
 
 ### CSS
 
-This folder contains the main css files used by the framework to override Bootstrap styles as well add new styles to the framework. The main file **styles.css** is a compilation of other css files using a Sass compiler. The main file is divided in separate section files with its own purpose. Custom styles should be added to the **\_custom.css** file.
+This folder contains the main css files used by the framework to override Bootstrap styles, as well add new styles to the framework. The main file **styles.css** is a compilation of other css files using a Sass compiler. The main file **\_styles.scss** is divided in separate section files with its own purpose. Custom styles that do not belong to the framework or that alters the framework behaviour should be added to a file called **custom.css**.
 
-**styles.css Content:**
+Only the compiled **styles.css** file and the **custom.css** should be referenced in a new project.
 
-* \_colors.scss
-* \_switch.scss
-* \_custom.scss
+**\_styles.css Content:**
+
+* \_alert-message.scss - customization to the alert message toast
+* \_button-link.scss - customization to the buttons
+* \_cards.scss - customization to the cards objects
+* \_colors.scss - declaration of color variables overrides
+* \_error-message.scss - error message customization
+* \_form-button-actions.scss - customization for toolbar action buttons
+* \_forms.scss - customization to form fields
+* \_indicator-component.scss - indicator-component configurations
+* \_main.scss - customizations applied to main elements of the framework
+* \_sidebar.scss - customization of the sidebar items
+* \_switch.scss - styles for the switch control object
 
 ### images
 
-This folder contains the all the image files used by the framework.
+This folder contains all the image files used by the framework.
 
 ### JS
 
@@ -37,11 +47,13 @@ Other than that the language subfolder contains files to provide dictionary and 
 
 **Configuration Directory Contents:**
 
-* **controllers.js** - Api controllers
-* **host.js** - Api host
-* **language-config.js** - Language  
-* **menu-items.js** - Menu items
+* **controllers.js** - Api controllers definitions
+* **host.js** - Api host address
+* **language-config.js** - Language settings
+* **menu-items.js** - Menu items specification
 * **routes.js** - Api routes definition
+* **session-config.js** - Session Object initialization
+* **test-variables.js** - Configurations to test the application and debug information
 
 **Language Directory Contents:**
 
@@ -50,7 +62,19 @@ Other than that the language subfolder contains files to provide dictionary and 
 * **language.es.es.js** - Language pack for es-es localization
 * **language.pt.br.js** - Language pack for pt-br localization
 
-### PlUGINS
+**Main Files**
+
+* **ajax.js** - methods to process ajax api calls
+* **app.js** - initializes the riot application
+* **breadcrumb.js** - controls the behaviour of the breadcrumb control
+* **charts.js** - controls charts control update
+* **formvalidation.js** - form validation logic
+* **globals.js** - global functions
+* **menu.js** - menu logic
+* **messages.js** - messages control logic
+* **session.js** - session object
+
+### PLUGINS
 
 This folder contains all third-party software used by the framework. Each folder is organized in the following structure when possible:
 
@@ -76,4 +100,14 @@ This folder contains the framework documentation.
 
 ### TAGS
 
-This folder contains the riot components created to run the application and the framework.
+This folder contains the riot components created to run the application and the framework. The components folder contains reusable tags.
+
+**Components:**
+
+- modal: Modal window component. Look into modals.js how to use it
+
+## How To
+
+* [How to configure a Menu for the application](support/menu-config.md)
+* [How to configure Form Validation](support/form-validation-config.md)
+* How to display messages

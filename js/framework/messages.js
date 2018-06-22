@@ -1,15 +1,44 @@
+// create observable to trigger event that will update modal window with error info
+const modalAlert = riot.observable();
 
 const onError = function(errorCode, errorMessage) {
-  var json = new Object;
-  json.errorCode = errorCode;
-  json.errorMessage = errorMessage;
-  json = JSON.parse(JSON.stringify(json));
+  if ((parseInt(errorCode/100)*100) === 400) {
+    onErrorAlert(errorCode, errorMessage);
+    return;
+  }
+  var error = new Object;
+  error.errorCode = errorCode;
+  error.errorMessage = errorMessage;
+  error = JSON.parse(JSON.stringify(error));
   sessionObj.error = new Object();
-  sessionObj.error = json;
+  sessionObj.error = error;
   saveSession();
   spinner.stop();
   displayError();
 };
+
+// updates the error information in the observable object
+const onErrorAlert = function(errorCode, errorMessage) {
+  var error = new Object;
+  error.errorCode = errorCode;
+  error.errorMessage = errorMessage;
+  modalAlert.trigger('updateModalErrorAlert', error);
+};
+
+const getErrorModal = function() {
+    var modalData = {
+        id : 'modalErrorAlert',
+        title : language.globals.windows.error.title,
+        actionBtns : [
+            {
+                title : language.globals.back,
+                action : "modal.hide('modalErrorAlert');",
+                bootstrapBtnClass : 'primary'
+            }
+        ]
+    }
+    return modalData;
+}
 
 const displayError = function() {
   path.navigate("/site-error", "Error", "Error Message");

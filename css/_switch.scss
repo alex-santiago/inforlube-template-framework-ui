@@ -181,6 +181,7 @@
   background-color: $gray-50;
   border-color: $gray-500;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+  margin-right: .75rem;
 }
 /* CSS3 on/off switches */
 .switch-square + .lable {
@@ -208,6 +209,7 @@
   -o-transition: text-indent .3s ease;
   transition: text-indent .3s ease;
   top: auto;
+  margin-right: .75rem;
 }
 .switch-square.switch-bootstrap + .lable::before {
   font-family: FontAwesome;

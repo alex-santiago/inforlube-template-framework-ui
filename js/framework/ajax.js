@@ -1,9 +1,15 @@
 
-var ajaxGet = function(url, onSuccess, onError){
+var ajaxGet = function(url, pathParams, queryParams, onSuccess, onError){
 	var xhr = new XMLHttpRequest();
 
+	if (typeof pathParams !== 'undefined' && pathParams != null && pathParams !== '') {
+		url = buildUrl(url, pathParams);
+	}
+	if (typeof queryParams !== 'undefined' && queryParams != null && queryParams !== '') {
+		url = buildUrlQueryString(url, queryParams);
+	}
 	xhr.open('GET', url);
-	ajaxOutput (url, {}, {});
+	ajaxOutput (url, pathParams, queryParams);
 
 	xhr.onload = function() {
 		spinner.stop();
@@ -25,69 +31,12 @@ var ajaxGet = function(url, onSuccess, onError){
 	xhr.send();
 }
 
-var ajaxGetPathParam = function(url, pathParams, onSuccess, onError){
-    var xhr = new XMLHttpRequest();
-
-    url = buildUrl(url, pathParams);
-    xhr.open('GET', url);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-
-		ajaxOutput (url, pathParams, {});
-		xhr.onload = function() {
-			spinner.stop();
-
-			if (xhr.status === 200) {
-				var returnData={};
-				if(xhr.responseText){
-					returnData = JSON.parse(xhr.responseText);
-				}
-				outputReturnData (returnData);
-				onSuccess(returnData);
-			}
-			else {
-				onError( xhr.status, 'Request failed. Status: ' + xhr.status + ' readyState: ' + xhr.readyState + ' responseText: ' + xhr.responseText );
-			}
-		};
-
-		spinner.spin(spinnerTarget);
-		xhr.send();
-}
-
-var ajaxPost = function(url, params, onSuccess, onError){
+var ajaxPost = function(url, pathParams, params, onSuccess, onError){
 	var xhr = new XMLHttpRequest();
 
-	xhr.open('POST', url);
-	xhr.setRequestHeader('Content-Type', 'application/json');
-
-	ajaxOutput (url, {}, params);
-	xhr.onload = function() {
-		spinner.stop();
-
-		if (xhr.status === 200) {
-			var returnData={};
-			if(xhr.responseText){
-				returnData = JSON.parse(xhr.responseText);
-			}
-			outputReturnData (returnData);
-			onSuccess(returnData);
-		}
-		else{
-			onError( xhr.status, 'Request failed. Status: ' + xhr.status + ' readyState: ' + xhr.readyState + ' responseText: ' + xhr.responseText );
-		}
-	};
-
-	spinner.spin(spinnerTarget);
-	var paramsStr = '';
-	if(params){
-		paramsStr = JSON.stringify(params);
+	if (typeof pathParams !== 'undefined' && pathParams != null && pathParams !== '') {
+		url = buildUrl(url, pathParams);
 	}
-	xhr.send(paramsStr);
-}
-
-var ajaxPostPathParam = function(url, pathParams, params, onSuccess, onError){
-	var xhr = new XMLHttpRequest();
-
-	url = buildUrl(url, pathParams);
 	xhr.open('POST', url);
 	xhr.setRequestHeader('Content-Type', 'application/json');
 
@@ -117,13 +66,16 @@ var ajaxPostPathParam = function(url, pathParams, params, onSuccess, onError){
 	xhr.send(paramsStr);
 }
 
-var ajaxPut = function(url, params, onSuccess, onError){
-	var xhr = new XMLHttpRequest();
+var ajaxPut = function(url, pathParams, params, onSuccess, onError){
+  var xhr = new XMLHttpRequest();
 
+	if (typeof pathParams !== 'undefined' && pathParams != null && pathParams !== '') {
+		url = buildUrl(url, pathParams);
+	}
 	xhr.open('PUT', url);
 	xhr.setRequestHeader('Content-Type', 'application/json');
 
-	ajaxOutput (url, {}, params);
+	ajaxOutput (url, pathParams, params);
 	xhr.onload = function() {
 		spinner.stop();
 
@@ -144,40 +96,17 @@ var ajaxPut = function(url, params, onSuccess, onError){
 	xhr.send(JSON.stringify(params));
 }
 
-var ajaxPutPathParam = function(url, pathParams, params, onSuccess, onError){
-    var xhr = new XMLHttpRequest();
-
-    url = buildUrl(url, pathParams);
-		xhr.open('PUT', url);
-		xhr.setRequestHeader('Content-Type', 'application/json');
-
-		ajaxOutput (url, pathParams, params);
-		xhr.onload = function() {
-			spinner.stop();
-
-			outputReturnData ({});
-			if (xhr.status === 200) {
-				var returnData={};
-				if(xhr.responseText){
-					returnData = JSON.parse(xhr.responseText);
-				}
-				outputReturnData (returnData);
-				onSuccess(returnData);
-			}
-			else{
-				onError( xhr.status, 'Request failed. Status: ' + xhr.status + ' readyState: ' + xhr.readyState + ' responseText: ' + xhr.responseText );
-			}
-		};
-
-		spinner.spin(spinnerTarget);
-		xhr.send(JSON.stringify(params));
-}
-
-var ajaxDelete = function(url, onSuccess, onError){
+var ajaxDelete = function(url, pathParams, onSuccess, onError){
 	var xhr = new XMLHttpRequest();
 
-	ajaxOutput (url, {}, {});
+	if (typeof pathParams !== 'undefined' && pathParams != null && pathParams !== '') {
+		url = buildUrl(url, pathParams);
+	}
+
 	xhr.open('DELETE', url);
+	xhr.setRequestHeader('Content-Type', 'application/json');
+
+	ajaxOutput (url, pathParams, {});
 	xhr.onload = function() {
 		spinner.stop();
 
@@ -230,8 +159,46 @@ const buildUrl = function (path, pathParams) {
     return url;
 };
 
+const buildUrlQueryString = (path, queryParams) => {
+	   if (!path.match(/\?$/)) {
+	       path = path + '?';
+	   }
+	var url = path;
+
+	url = url + buildQueryString(queryParams);
+	return url;
+};
+
+const toString = Object.prototype.toString;
+ // Builds an URL querystring to append in a given base path URL by using the object properies as query variables
+const buildQueryString = (obj, prefix) => {
+	if (prefix && (obj === null || typeof obj == 'undefined')) {
+ 		return prefix + '=';
+	} else if (toString.call(obj) == '[object Object]') {
+	 	return stringifyObject(obj, prefix);
+	} else if (prefix) { // string inside array or hash
+	 	return prefix + '=' + encodeURIComponent(String(obj));
+	} else if (String(obj).indexOf('=') !== -1) { // string with equal sign
+	 	return String(obj);
+	} else {
+	 	throw new TypeError('Cannot build a querystring out of: ' + obj);
+	}
+};
+
+const stringifyObject = (obj, prefix) => {
+  var ret = [];
+
+  Object.keys(obj).forEach(function(key) {
+    ret.push(buildQueryString(obj[key], prefix
+      ? prefix + '[' + encodeURIComponent(key) + ']'
+      : encodeURIComponent(key)));
+  })
+
+  return ret.join('&');
+}
+
 const ajaxOutput = (url, pathParams, Params) => {
-	if (typeof ajaxDebug == 'undefined' || !ajaxDebug ) {
+	if (typeof AJAX_DEBUG == 'undefined' || !AJAX_DEBUG ) {
 		return;
 	}
 	console.log('url');
@@ -243,7 +210,7 @@ const ajaxOutput = (url, pathParams, Params) => {
 	console.log(JSON.stringify(Params));
 };
 const outputReturnData = (returnData) => {
-	if (typeof ajaxDebug == 'undefined' || !ajaxDebug ) {
+	if (typeof AJAX_DEBUG == 'undefined' || !AJAX_DEBUG ) {
 		return;
 	}
 	console.log('returnData');

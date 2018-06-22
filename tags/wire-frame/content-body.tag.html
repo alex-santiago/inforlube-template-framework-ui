@@ -6,6 +6,13 @@
       </div>
     </div>
   </div>
+  <!-- modal window that show error alert messages -->
+  <modal data={getData()}>
+    <div class="alert alert-dark" role="alert">
+      <p> {language.globals.windows.error.code}: {this.parent.error.errorCode} </p>
+      <p> {language.globals.windows.error.message}: {this.parent.error.errorMessage} </p>
+    </div>
+  </modal>
 
   <!-- component javascript code -->
   <script>
@@ -16,7 +23,20 @@
     });
 
     this.on('before-mount', function() {
+      tag.error = new Object();
+      tag.error.errorCode = "";
+      tag.error.errorMessage = "";
     });
+
+    getData(){
+      return getErrorModal();
+    }
+
+    modalAlert.on('updateModalErrorAlert', function(error) {
+      tag.error = error;
+      this.update();
+      modal.show('modalErrorAlert');
+    }.bind(this));
 
   </script>
 </content-body>
